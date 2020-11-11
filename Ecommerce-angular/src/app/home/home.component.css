@@ -1,0 +1,60 @@
+.home{
+    /*background:#ecf0f1;*/
+    background: #fafafa;
+}
+/*
+.slide{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+.slider{
+    height: 85vh;
+    padding: 20px 50px;
+    width: 100%;
+}
+
+.carousel-item{
+    border: 4px solid black;
+
+}
+.wh{
+	height: 400px;
+}*/
+.slider{
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+.carousel-inner{
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+}
+.carousel-indicators li{
+    background-color: black;
+}
+.products{
+    border-radius: 1px solid #444444;
+}
+.input-group{
+    padding-top: 20px;
+    width: 60%;
+   
+}
+.fa-search{
+    font-size: 20px;
+}
+.btn-default{
+    background: orange;
+    width: 100px;
+    padding: 9px;
+}
+.form-control{
+    padding: 20px;
+    font-size: 20px;
+    
+}
+.row{
+    margin-right: 0;
+}
+.col-md-4{
+    padding-right: 0;
+}

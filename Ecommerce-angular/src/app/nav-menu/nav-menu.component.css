@@ -1,0 +1,18 @@
+.cart-no{
+    position: absolute;
+    min-width: 20px;
+    min-height: 20px;
+    border-radius: 50%;
+    font-size: 1em;
+    color: white;
+    background: blue;
+    text-align: center;
+    top: -8px;
+    right: -3px;
+}
+.navbar .navbar-brand span{
+    color: #05f7ff;
+}
+.navbar{
+    background: #303036;
+}

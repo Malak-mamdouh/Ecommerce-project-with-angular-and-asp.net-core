@@ -1,0 +1,39 @@
+<div class="home">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="input-group float-right">
+                    <input type="text" class="form-control" #search>
+                    <button class="btn btn-default" (click)="onSearch()"><i class="fa fa-search"></i></button> 
+                </div>
+        </div>
+        </div>
+        <div class="row">
+            <section class="col-lg-2 mt-2" id="side">
+                <div class="side-menu">
+                    <h5 class="text-warning ml-3">Types</h5>
+                    <ul class="list-group my-3">
+                      <li class="list-group-item" *ngFor="let category of categoryList"
+                      [class.active]="category.id === SelectedId"
+                      [value]="category.id"
+                      (click)="OnFilter(category.id)" style="cursor: pointer;">
+                      {{category.categoryName}}
+                      </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="col mt-4">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3 mb-3" *ngFor="let product of products">
+                    <app-product-card [prod]="product">
+                    </app-product-card>
+                </div>
+            </div>
+            </section>
+    
+            
+        </div>
+    </div>
+    
+        
+</div>

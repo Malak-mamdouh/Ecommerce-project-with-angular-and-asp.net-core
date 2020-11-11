@@ -1,0 +1,84 @@
+<div class="container mt-4 mb-4">
+    <h5 class="text-center">Registration</h5>
+    <hr>
+    <div class="register-container">
+        <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="message != null && message!= ''">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            {{message}}
+        </div>
+        <div class="row justify-content-center">
+            <div class="register-form">
+                <form [formGroup]="userForm" (ngSubmit)="register()">
+                    <div class="form-group">
+                        <input type="text" formControlName="userName" placeholder="Username..." id="userName" class="form-control" 
+                        [ngClass] = "{'is-invalid': !this.userForm.get('userName').valid 
+                        && this.userForm.get('userName').touched}" (blur)="isUserNameExist()">
+                        <div class="text-danger" *ngIf="!this.userForm.get('userName').valid 
+                        && this.userForm.get('userName').touched">
+                            {{messageValidate.username.required}}
+                        </div>
+                        <div class="text-danger">
+                            {{messageValidate.username.nameExist}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" formControlName="email" placeholder="Email..." class="form-control" 
+                        id="email" [ngClass]="{'is-invalid' : 
+                        !this.userForm.get('email').valid && this.userForm.get('email').touched}"
+                         (blur)="isEmailExist()">
+                        <div class="text-danger" 
+                        *ngIf="!this.userForm.get('email').valid && this.userForm.get('email').touched">
+                             {{messageValidate.email.required}}
+                        </div>
+                        <div class="text-danger">
+                            {{messageValidate.email.emailExist}}
+                        </div>
+                      </div>
+                    <div class="form-group">
+                        <input type="password" formControlName="password" placeholder="Password..." class="form-control" 
+                        id="password" [ngClass]="{'is-invalid' : 
+                        !this.userForm.get('password').valid && this.userForm.get('password').touched}">
+                        <div class="text-danger" 
+                        *ngIf="!this.userForm.get('password').valid 
+                        && this.userForm.get('password').touched">
+                             <div *ngIf="this.userForm.get('password').errors.required">
+                                {{messageValidate.pass.required}}
+                             </div>
+                             <div *ngIf="this.userForm.get('password').errors.minlength">
+                                {{messageValidate.pass.minLength}}
+                             </div>
+                        </div>
+                        <div class="text-danger" *ngIf="!isPasswordValid()">
+                            {{messageValidate.pass.notValid}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" formControlName="passwordConfirm" 
+                        placeholder="Confirm Password..." class="form-control" 
+                        id="passwordConfirm" [ngClass]="{'is-invalid' : 
+                        !this.userForm.get('passwordConfirm').valid && this.userForm.get('passwordConfirm').touched}">
+                        <div class="text-danger" 
+                        *ngIf="!this.userForm.get('passwordConfirm').valid && this.userForm.get('passwordConfirm').touched">
+                             <div *ngIf="this.userForm.get('passwordConfirm').errors.required">
+                                {{messageValidate.passConfirm.required}}
+                             </div>
+                             <div *ngIf="this.userForm.get('passwordConfirm').errors.minlength">
+                                {{messageValidate.passConfirm.minLength}}
+                             </div>
+                        </div>
+                        <div class="text-danger" *ngIf="passwordNotMatch()">
+                            {{messageValidate.passConfirm.NotMatch}}
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!userForm.valid || passwordNotMatch() || isUserNameExist() 
+                    || isEmailExist()" class="btn btn-primary btn-block mt-5">Register</button>
+                    <a routerLink="/login" class="btn btn-danger btn-block mt-3">Login</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>

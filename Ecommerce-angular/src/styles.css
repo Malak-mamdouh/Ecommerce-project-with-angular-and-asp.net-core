@@ -1,0 +1,12 @@
+html , body{
+    height: 100%;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+.mal{
+    min-height: 80vh;
+}
+a{
+    color: #d3d3d3;
+}

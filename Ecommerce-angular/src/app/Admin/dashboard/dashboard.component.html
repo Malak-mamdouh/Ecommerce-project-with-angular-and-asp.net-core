@@ -1,0 +1,159 @@
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Control Panel</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Users</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a (click) ="CheckUser()">Users List</a>
+                    </li>
+                    <li>
+                        <a (click)="CheckUserRoleList()">User Roles</a>
+                    </li>
+                
+                </ul>
+            </li>
+            <li>
+                <a (click)="CategoryList()" style="cursor: pointer;">Categories</a>
+            </li>
+            <!--<li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a></a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>-->
+            <li>
+                <a (click)="AllProducts()">Products</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download</a>
+            </li>
+            <li>
+                <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="btn btn-dark">
+                    <i class="fa fa-align-left"></i>
+                </button>
+                
+                <div class="">
+                    <h4>Control Panel</h4>
+                </div>
+            </div>
+        </nav>
+
+     <div class="container mt-5 main-panel">
+        
+         <div *ngIf="isUserList">
+            <div class="alert alert-primary" role="alert">
+                <strong>Users List</strong>
+            </div>
+            <div class="col-sm-4" style="float: right;">
+                <input type="text" [(ngModel)]="searchTerm" class="form-control" style="margin-bottom: 15px; 
+                border-radius: 50px;" placeholder="Username">   
+             </div>
+            <app-users [search]="searchTerm"></app-users> 
+         </div>
+
+         <div *ngIf="isUserRoleList">
+            <div class="alert alert-primary" role="alert">
+                <strong>User Roles</strong>
+            </div>
+            <div class="col-sm-4" style="float: right;">
+                <input type="text" [(ngModel)]="searchTerm" class="form-control" style="margin-bottom: 15px; 
+                border-radius: 50px;" placeholder="RoleName">   
+             </div>
+            <app-user-roles [search]="searchTerm"></app-user-roles>
+         </div>
+
+
+         <div *ngIf="isCategoryList">
+            <div class="alert alert-primary text-center mb-4" role="alert">
+                <h5 style="font-weight: bold;">Category List</h5>
+            </div>
+            <div class="col-sm-4" style="float: right;">
+                <input type="text" [(ngModel)]="searchTerm" class="form-control" style="margin-bottom: 15px; 
+                border-radius: 50px;" placeholder="Category Name">   
+             </div>
+            <div style="margin-top: 10px;">
+                <button type="button" class="btn btn-outline-success mb-3" (click)="addcategory()">Add Category</button>
+            </div>
+
+            <app-category [search]="searchTerm"></app-category>
+         </div>
+
+
+         <div *ngIf="isAddCategory">
+             <app-addcategory></app-addcategory>
+         </div>
+
+
+         <div *ngIf="isproductList">
+            <div class="col-sm-4" style="float: right;">
+                <input type="text" [(ngModel)]="searchTerm" class="form-control" style="margin-bottom: 15px; 
+                border-radius: 50px;" placeholder="Product Name">   
+             </div>
+            <table id="tbl" class="table text-center bg-light border">
+                <thead>
+                    <tr class="bg-dark text-light">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of products | filter:searchTerm:'productName'">
+                        <td scope="row">{{ item.productId }}</td>
+                        <td> {{ item.productName }} </td>
+                        <td> {{ item.description }} </td>
+                        <td> {{ item.price }} </td>
+                        <td> {{ item.categoryId}} </td>
+                        <td>
+                            <button type="button" class="btn btn-primary mr-2" [routerLink]="['/editproduct' ,
+                             item.productId]">Edit</button>
+                            
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+         </div>
+     </div>
+     </div>
+</div>
+

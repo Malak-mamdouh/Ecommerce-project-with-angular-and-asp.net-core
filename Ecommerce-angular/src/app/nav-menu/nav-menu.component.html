@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="">E-<span>Market</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <a class="nav-link" routerLink="dashboard" *ngIf="isAdmin()"> 
+          <i class="fa fa-user-shield"></i> Control Panel
+        </a>
+        <a class="nav-link" routerLink="products">Products</a>
+      </ul>
+     <ul class="nav navbar-nav">
+        
+        <li class="nav-item dropdown mr-3">
+          <a class="nav-link dropdown-toggle" href="#" 
+          id="navbarDropdownMenuLink" role="button" 
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="!isUserRegistered()">
+            Log
+          </a>
+          <a class="nav-link dropdown-toggle" href="#" 
+          id="navbarDropdownMenuLink" role="button" 
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="isUserRegistered()">
+            <i class="fa fa-user"></i>
+            Hi {{name}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div *ngIf="!isUserRegistered()">  
+              <a class="dropdown-item" routerLink='register'>Register</a>
+              <a class="dropdown-item" routerLink="login">Login</a>
+            </div>
+           <div *ngIf="isUserRegistered()">
+            <a class="dropdown-item" href="#" (click)="logout()">Logout</a> 
+           </div>
+          </div>
+         
+        </li>
+        <li>
+          <a routerLink="/basket" *ngIf="!isAdmin()" class="position-relative" style="color: cornflowerblue;">
+            <i class="fa fa-shopping-cart fa mr-3 mt-2" style="font-size: 25px;"></i>
+            <div *ngIf="(basket | async) as cart" class="cart-no">{{ cart.items.length }}</div>
+          </a>
+        </li>
+      
+      </ul>
+
+
+     
+    </div>
+  </nav>

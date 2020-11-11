@@ -1,0 +1,21 @@
+
+<table id="tbl" class="table text-center bg-light border">
+    <thead>
+        <tr class="bg-dark text-light">
+            <th>Category</th>
+            <th>Number</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of categoryList | filter:search:'categoryName'">
+            <td scope="row">{{ item.categoryName }}</td>
+            <td> {{ item.num_of_products }} </td>
+            <td>
+                <button type="button" class="btn btn-primary mr-5" [routerLink]="['/editcategory' , item.id]">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="onDelete(item.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,19 @@
+<div class="bg-light px-4 py-3 text-uppercase font-weight-bold">
+    Order Summary
+</div>
+<div class="p-4">
+    <ul class="list-unstyled mb-4" *ngIf="(basketTotal | async) as basket">
+        <li class="d-flex py-3 justify-content-between border-bottom">
+            <strong class="text-muted">Shipping</strong>
+            <strong>{{basket.shipping | currency}}</strong>
+        </li>
+        <li class="d-flex py-3 justify-content-between border-bottom">
+            <strong class="text-muted">SubTotal</strong>
+            <strong>{{basket.subtotal | currency}}</strong>
+        </li>
+        <li class="d-flex py-3 justify-content-between border-bottom">
+            <strong class="text-muted">Total</strong>
+            <strong>{{basket.total | currency}}</strong>
+        </li>
+    </ul>
+</div>

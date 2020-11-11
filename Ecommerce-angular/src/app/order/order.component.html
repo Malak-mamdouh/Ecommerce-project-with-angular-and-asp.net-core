@@ -1,0 +1,66 @@
+<div class="container mt-4 mb-4 ml-4">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="message !== '' && message !== null">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+      {{message}}
+    </div>
+    <div class="col-md-5">
+        <form [formGroup]="orderForm" (ngSubmit)="add()">
+            <div class="form-group">
+              <label for="firstName">FirstName</label>
+              <input type="text" formControlName="firstName" class="form-control" 
+              id="firstName" [ngClass]="{'is-invalid' : 
+              !this.orderForm.get('firstName').valid && this.orderForm.get('firstName').touched}">
+              <div class="text-danger" 
+                *ngIf="this.orderForm.get('firstName').invalid && this.orderForm.get('firstName').touched">
+                        {{messageValidate.firstname.required}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">LastName</label>
+                <input type="text" formControlName="lastName" class="form-control" 
+                id="lastName" [ngClass]="{'is-invalid' : 
+                !this.orderForm.get('lastName').valid && this.orderForm.get('lastName').touched}">
+                <div class="text-danger" 
+                  *ngIf="this.orderForm.get('lastName').invalid && this.orderForm.get('lastName').touched">
+                          {{messageValidate.lastname.required}}
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" formControlName="address" class="form-control" 
+                id="address" [ngClass]="{'is-invalid' : 
+                !this.orderForm.get('address').valid && this.orderForm.get('address').touched}">
+                <div class="text-danger" 
+                  *ngIf="this.orderForm.get('address').invalid && this.orderForm.get('address').touched">
+                          {{messageValidate.address.required}}
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" formControlName="city" class="form-control" 
+                id="city" [ngClass]="{'is-invalid' : 
+                !this.orderForm.get('city').valid && this.orderForm.get('city').touched}">
+                <div class="text-danger" 
+                  *ngIf="this.orderForm.get('city').invalid && this.orderForm.get('city').touched">
+                          {{messageValidate.city.required}}
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="phone">PhoneNumber</label>
+                <input type="text" formControlName="phone" class="form-control" 
+                id="phone" [ngClass]="{'is-invalid' : 
+                !this.orderForm.get('phone').valid && this.orderForm.get('phone').touched}">
+                <div class="text-danger" 
+                  *ngIf="this.orderForm.get('phone').invalid && this.orderForm.get('phone').touched">
+                          {{messageValidate.phone.required}}
+                  </div>
+              </div>
+            <button type="submit" [disabled]="!orderForm.valid" class="btn btn-primary mt-2">Confirm</button>
+        </form>
+    </div>
+    
+  </div>
+  

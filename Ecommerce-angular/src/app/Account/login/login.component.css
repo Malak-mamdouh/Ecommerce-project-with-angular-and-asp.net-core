@@ -1,0 +1,23 @@
+
+h5{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+hr{
+    width: 50%;
+}
+
+.login-form{
+    margin-top: 20px;
+    border: 1px solid #ced4da;
+    padding: 40px;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.form-control{
+    width: 240px;
+}
