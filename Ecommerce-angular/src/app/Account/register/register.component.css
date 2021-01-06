@@ -8,7 +8,7 @@ hr{
 .register-form{
     margin-top: 20px;
     border: 1px solid #ced4da;
-    border-radius: 5%;
+    border-radius: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,5 +17,5 @@ hr{
 }
 
 .form-control{
-    width: 240px;
+    width: 280px;
 }

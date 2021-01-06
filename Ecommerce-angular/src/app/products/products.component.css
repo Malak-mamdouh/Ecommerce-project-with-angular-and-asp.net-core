@@ -9,16 +9,21 @@
 }
 .fa-search{
     font-size: 20px;
+    color: white;
 }
 .btn-default{
-    background: orange;
-    width: 100px;
+    background: #9575CD;
+    width: 70px;
     padding: 9px;
 }
 .form-control{
     padding: 20px;
     font-size: 20px;
     
+}
+.list-group-item.active{
+    background-color: #9575CD;
+    border-color: #9575CD;
 }
 
 @media screen and (max-width: 960px){

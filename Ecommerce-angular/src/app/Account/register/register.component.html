@@ -13,7 +13,7 @@
             <div class="register-form">
                 <form [formGroup]="userForm" (ngSubmit)="register()">
                     <div class="form-group">
-                        <input type="text" formControlName="userName" placeholder="Username..." id="userName" class="form-control" 
+                        <input type="text" formControlName="userName" placeholder="Username" id="userName" class="form-control" 
                         [ngClass] = "{'is-invalid': !this.userForm.get('userName').valid 
                         && this.userForm.get('userName').touched}" (blur)="isUserNameExist()">
                         <div class="text-danger" *ngIf="!this.userForm.get('userName').valid 
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" formControlName="email" placeholder="Email..." class="form-control" 
+                        <input type="email" formControlName="email" placeholder="Email" class="form-control" 
                         id="email" [ngClass]="{'is-invalid' : 
                         !this.userForm.get('email').valid && this.userForm.get('email').touched}"
                          (blur)="isEmailExist()">
@@ -38,7 +38,7 @@
                         </div>
                       </div>
                     <div class="form-group">
-                        <input type="password" formControlName="password" placeholder="Password..." class="form-control" 
+                        <input type="password" formControlName="password" placeholder="Password" class="form-control" 
                         id="password" [ngClass]="{'is-invalid' : 
                         !this.userForm.get('password').valid && this.userForm.get('password').touched}">
                         <div class="text-danger" 
@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group">
                         <input type="password" formControlName="passwordConfirm" 
-                        placeholder="Confirm Password..." class="form-control" 
+                        placeholder="Confirm Password" class="form-control" 
                         id="passwordConfirm" [ngClass]="{'is-invalid' : 
                         !this.userForm.get('passwordConfirm').valid && this.userForm.get('passwordConfirm').touched}">
                         <div class="text-danger" 
@@ -74,8 +74,9 @@
                         </div>
                     </div>
                     <button type="submit" [disabled]="!userForm.valid || passwordNotMatch() || isUserNameExist() 
-                    || isEmailExist()" class="btn btn-primary btn-block mt-5">Register</button>
-                    <a routerLink="/login" class="btn btn-danger btn-block mt-3">Login</a>
+                    || isEmailExist()" class="btn btn-warning btn-block mt-5">Create New Account</button>
+                    <p style="text-align: center;" class="mb-1">Or</p>
+                    <a routerLink="/login" class="btn btn-block" style="background-color: #512DA8;color: white;">Login</a>
                 </form>
             </div>
         </div>

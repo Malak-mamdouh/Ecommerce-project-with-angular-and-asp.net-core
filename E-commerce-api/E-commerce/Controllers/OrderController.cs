@@ -36,8 +36,6 @@ namespace E_commerce.Controllers
             {
                 return NotFound();
             }
-            else
-            {
                 if (ModelState.IsValid)
                 {
                     var order = await _repo.AddOrderAsync(model);
@@ -59,8 +57,18 @@ namespace E_commerce.Controllers
                     await _db.SaveChangesAsync();
                     return Ok();
                 }
-                return BadRequest();
+            return BadRequest();
+        }
+        [HttpGet]
+        [Route("GetOrder/{id}")]
+        public async Task<ActionResult<Order>> GetOrder(int id)
+        {
+            var order = await _repo.GetOrderAsync(id);
+            if (order != null)
+            {
+                return order;
             }
+            return NotFound();
         }
     }
 }

@@ -62,6 +62,9 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
       price: ['' , Validators.required],
       categoryId: [0 , Validators.required]
     });
+    this.response = {
+      url: ''
+    };
     this.product = {
       productId: 0,
       productName: '',
@@ -136,11 +139,11 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
         } , err => console.log(err));
       }
       else{
-        if (this.response.url === null){
-          if (this.Editurl !== null){
+          if (this.Editurl !== null && this.response.url == ''){
             this.product.url = this.Editurl;
+            console.log(this.product.url);
           }
-        }else{
+        else{
           this.product.url = this.response.url;
         }
         this.product.productId = this.id;

@@ -11,8 +11,31 @@
     right: -3px;
 }
 .navbar .navbar-brand span{
-    color: #05f7ff;
+    color: #ffD700;
 }
 .navbar{
-    background: #303036;
+    background: #512DA8;
 }
+.dropdown-menu{
+    min-width: 9rem;
+}
+.dropdown-item{
+    width: 90%;
+    
+}
+a{
+    color: white;
+}
+.droplink{
+    color: #9575CD!important;
+}
+a{
+    margin-left: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.active , .color:hover{
+    border-radius: 5%;
+    background-color: #9575CD;
+}
+/*303036*/

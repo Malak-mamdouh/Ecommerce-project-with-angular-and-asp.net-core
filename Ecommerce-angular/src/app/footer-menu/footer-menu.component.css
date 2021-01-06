@@ -1,11 +1,11 @@
 .footer{
-    background: #303036;
+    background: #161616;
     color: #d3d3d3;
     height: 350px;
     position: relative;
 }
 .footer .footer-bottom{
-    background: #343a40;
+    background: #0c0c0c;
     color: #686868;
     height: 50px;
     text-align: center;
@@ -29,7 +29,7 @@
     color: white;
 }
 .footer .footer-content .about h1 span{
-    color: #05f7ff;
+    color: #ffD700;
 }
 .footer .footer-content .about .contact span{
     display: block;

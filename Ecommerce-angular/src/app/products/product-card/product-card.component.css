@@ -8,3 +8,18 @@
 .card-img-top{
     width: 85%;
 }
+.btn-flat{
+    border-radius: 0px;
+    border: 2px solid;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    color: #9575CD;
+    background: linear-gradient(30deg , #9575CD 50%, transparent 50%);
+    background-position: right bottom;
+    background-size: 240% 100%;
+}
+.btn-flat:hover{
+    background-position: left bottom;
+    color: #fff;
+    border: 2px solid #9575CD;
+}

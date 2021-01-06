@@ -147,7 +147,7 @@ namespace E_commerce.Controllers
             }
         }
 
-        [HttpGet]
+       /* [HttpGet]
         [Route("GetRoleName/{email}")]
         public async Task<string> GetRoleName(string email)
         {
@@ -164,7 +164,7 @@ namespace E_commerce.Controllers
                 }
             }
             return null;
-        }
+        }*/
 
         [HttpGet]
         [Route("IsUserExists")]

@@ -6,10 +6,13 @@
       </button>
       {{message}}
     </div>
-    <div class="col-md-5">
+    <h3 style="text-align: center;color: #333;">Billing Details</h3>
+    <div class="row justify-content-center col">
+      <div class="rounded border order-form">
         <form [formGroup]="orderForm" (ngSubmit)="add()">
-            <div class="form-group">
-              <label for="firstName">FirstName</label>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label for="firstName">First Name</label>
               <input type="text" formControlName="firstName" class="form-control" 
               id="firstName" [ngClass]="{'is-invalid' : 
               !this.orderForm.get('firstName').valid && this.orderForm.get('firstName').touched}">
@@ -18,8 +21,8 @@
                         {{messageValidate.firstname.required}}
                 </div>
             </div>
-            <div class="form-group">
-                <label for="lastName">LastName</label>
+            <div class="form-group col-md-6">
+                <label for="lastName">Last Name</label>
                 <input type="text" formControlName="lastName" class="form-control" 
                 id="lastName" [ngClass]="{'is-invalid' : 
                 !this.orderForm.get('lastName').valid && this.orderForm.get('lastName').touched}">
@@ -28,7 +31,9 @@
                           {{messageValidate.lastname.required}}
                   </div>
               </div>
-              <div class="form-group">
+          </div>
+            <div class="row">
+              <div class="form-group col-md-6">
                 <label for="address">Address</label>
                 <input type="text" formControlName="address" class="form-control" 
                 id="address" [ngClass]="{'is-invalid' : 
@@ -38,7 +43,7 @@
                           {{messageValidate.address.required}}
                   </div>
               </div>
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="city">City</label>
                 <input type="text" formControlName="city" class="form-control" 
                 id="city" [ngClass]="{'is-invalid' : 
@@ -48,19 +53,27 @@
                           {{messageValidate.city.required}}
                   </div>
               </div>
-              <div class="form-group">
-                <label for="phone">PhoneNumber</label>
-                <input type="text" formControlName="phone" class="form-control" 
-                id="phone" [ngClass]="{'is-invalid' : 
-                !this.orderForm.get('phone').valid && this.orderForm.get('phone').touched}">
-                <div class="text-danger" 
-                  *ngIf="this.orderForm.get('phone').invalid && this.orderForm.get('phone').touched">
-                          {{messageValidate.phone.required}}
-                  </div>
+            </div>
+              <div class="row">
+                <div class="form-group col-md-10">
+                  <label for="phone">Phone</label>
+                  <input type="text" formControlName="phone" class="form-control" 
+                  id="phone" [ngClass]="{'is-invalid' : 
+                  !this.orderForm.get('phone').valid && this.orderForm.get('phone').touched}">
+                  <div class="text-danger" 
+                    *ngIf="this.orderForm.get('phone').invalid && this.orderForm.get('phone').touched">
+                            {{messageValidate.phone.required}}
+                    </div>
+                </div>
               </div>
-            <button type="submit" [disabled]="!orderForm.valid" class="btn btn-primary mt-2">Confirm</button>
+              
+            <button type="submit" [disabled]="!orderForm.valid" 
+            class="btn btn-warning btn-block mt-4">CONFIRM ORDER</button>
         </form>
     </div>
+    </div>
+
+
     
   </div>
   

@@ -3,20 +3,19 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="input-group float-right">
-                    <input type="text" class="form-control" #search>
+                    <input (keyup.enter)="onSearch()" type="text" class="form-control" #search>
                     <button class="btn btn-default" (click)="onSearch()"><i class="fa fa-search"></i></button> 
+                    <button class="btn btn-outline-warning ml-3" style="width: 80px;" (click)="onReset()">Reset</button>
                 </div>
         </div>
         </div>
         <div class="row">
             <section class="col-lg-2 mt-2" id="side">
                 <div class="side-menu">
-                    <h5 class="text-warning ml-3">Types</h5>
                     <ul class="list-group my-3">
                       <li class="list-group-item" *ngFor="let category of categoryList"
                       [class.active]="category.id === SelectedId"
-                      [value]="category.id"
-                      (click)="OnFilter(category.id)" style="cursor: pointer;">
+                      (click)="OnFilter(category.id)" style="cursor: pointer;"><!--[value]="category.id"-->
                       {{category.categoryName}}
                       </li>
                     </ul>

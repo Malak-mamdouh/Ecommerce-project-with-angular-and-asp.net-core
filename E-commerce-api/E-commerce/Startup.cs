@@ -74,6 +74,7 @@ namespace E_commerce
                options =>
                {
                    options.Cookie.HttpOnly = true;
+                   options.Cookie.Name = "Malak";
                    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                    options.LogoutPath = "/Account/Logout";
                    options.SlidingExpiration = true; //to re-issue a new cookie with a new expirationTime 
@@ -108,7 +109,7 @@ namespace E_commerce
                       .AllowCredentials());
             app.UseStaticFiles();
             app.UseAuthentication();
-            app.UseCookiePolicy();
+            
             app.UseAuthorization();
             app.UseStaticFiles(new StaticFileOptions()
             {

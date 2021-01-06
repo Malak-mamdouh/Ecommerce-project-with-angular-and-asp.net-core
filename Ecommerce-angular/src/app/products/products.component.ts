@@ -26,10 +26,7 @@ export class ProductsComponent implements OnInit {
     this.GetCategories();
   }
 
-  /*click(s: ElementRef){
-    this.searchTerm = s.nativeElement.value;
-    console.log(this.searchTerm);
-  }*/
+  
   GetProducts(){
     this.service.Index(this.SelectedId , this.searchTerm).subscribe(list => {
       this.products = list;
@@ -49,6 +46,12 @@ export class ProductsComponent implements OnInit {
   }
   onSearch(){
     this.searchTerm = this.SearchProduct.nativeElement.value;
+    this.GetProducts();
+  }
+  onReset(){
+    this.SearchProduct.nativeElement.value = '';
+    this.searchTerm = '';
+    this.SelectedId = 0;
     this.GetProducts();
   }
 }

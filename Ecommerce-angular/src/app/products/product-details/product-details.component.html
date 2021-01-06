@@ -1,36 +1,25 @@
 <div class="container">
    <div class="mt-4" >
-    <h1 class="text-center">{{product.productName}}</h1>
+       <div *ngIf="product">
+           <h1 class="text-center">{{product.productName}}</h1>
+        </div>
     <hr>
     </div>
-    <div class="row mt-5">
+
+    <div class="row mt-5" *ngIf="product">
         <div class="col-md-4">
-            <img [src]="createImgPath(product.url)" class="mx-auto d-block img-fluid" 
-            alt="profile picture" style="max-width: 60%;">
-            <img src="assets/images/in stock.png" class="mx-auto d-block img-fluid mt-4" width="40%">
+                <img [src]="createImgPath(product.url)" class="mx-auto d-block img-fluid" 
+                alt="profile picture" style="max-width: 60%;">
+            
+            <img src="assets/images/in stock.png" class="mx-auto d-block 
+            img-fluid mt-2 mb-5" width="40%">
         </div>
         <div class="col-md-8">
                     <p class="card-text bold">{{product.description}}</p>
-                    
-                    <h3 class="mt-4">{{product.price | currency}}</h3>
-            <!--<button class="btn btn-danger  mr-2 a-" (click)="ondelete(product.productId)">  Delete </button>-->
-           
-                <button class="btn btn-outline-primary mr-2" *ngIf="isAdmin()" type="button" (click)="EditProductClick(product.productId)">Edit</button>
-                <button class="btn btn-outline-danger" *ngIf="isAdmin()" type="button" (click)="onDelete(product.productId)">  Delete </button>    
-         
-            </div>
+                    <h3 class="mt-4">{{product.price | currency}}</h3>           
+                <button class="btn btn-warning mr-2" *ngIf="isAdmin()" type="button" (click)="EditProductClick(product.productId)">EDIT</button>
+                <button class="btn" style="background-color: #9575CD; color: white;" 
+                *ngIf="isAdmin()" type="button" (click)="onDelete(product.productId)">  DELETE </button>     
+        </div>
+    </div>
 </div>
-
-
-
-<!-- <div class="card mt-5 mr-2" style="width: 18rem;">
-             <img [src]="createImgPath(product.url)" alt="profile picture" style="width:60px; height:60px;">
-             <div class="card-body">
-                 <h1 class="card-title">{{product.productName}} </h1>
-                 <p class="card-text">{{product.description}}</p>
-                 <h3>{{product.price}}</h3>
-                 <button class="btn btn-danger  mr-2 a-" (click)="ondelete(product.productId)">  Delete </button>
-                 <button type="button" class="btn btn-primary mr-2" *ngIf="isAdmin()" (click)="EditProductClick(product.productId)">Edit</button>
-                 <button class="btn btn-danger" *ngIf="isAdmin()" (click)="onDelete(product.productId)">  Delete </button>
-             </div>
-     </div>-->

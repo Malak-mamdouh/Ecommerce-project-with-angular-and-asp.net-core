@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rt\\source\\repos\\E-commerce\\E-commerce\\E-commerce.csproj": {}
+    "C:\\Users\\rt\\Documents\\GitHub\\Ecommerce-project-with-angular-and-asp.net-core\\E-commerce-api\\E-commerce\\E-commerce.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rt\\source\\repos\\E-commerce\\E-commerce\\E-commerce.csproj": {
+    "C:\\Users\\rt\\Documents\\GitHub\\Ecommerce-project-with-angular-and-asp.net-core\\E-commerce-api\\E-commerce\\E-commerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rt\\source\\repos\\E-commerce\\E-commerce\\E-commerce.csproj",
+        "projectUniqueName": "C:\\Users\\rt\\Documents\\GitHub\\Ecommerce-project-with-angular-and-asp.net-core\\E-commerce-api\\E-commerce\\E-commerce.csproj",
         "projectName": "E-commerce",
-        "projectPath": "C:\\Users\\rt\\source\\repos\\E-commerce\\E-commerce\\E-commerce.csproj",
+        "projectPath": "C:\\Users\\rt\\Documents\\GitHub\\Ecommerce-project-with-angular-and-asp.net-core\\E-commerce-api\\E-commerce\\E-commerce.csproj",
         "packagesPath": "C:\\Users\\rt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rt\\source\\repos\\E-commerce\\E-commerce\\obj\\",
+        "outputPath": "C:\\Users\\rt\\Documents\\GitHub\\Ecommerce-project-with-angular-and-asp.net-core\\E-commerce-api\\E-commerce\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rt\\AppData\\Roaming\\NuGet\\NuGet.Config",

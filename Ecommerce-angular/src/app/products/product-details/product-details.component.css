@@ -1,13 +1,15 @@
 hr{
     width: 150px;
-    border: 1px solid #434444;
+    border: 1px solid #ffD700;
 }
 
 .btn{
     margin-top: 90px;
     margin-bottom: 30px;
 }
-
+.img-class{
+    margin-bottom: 8px;
+}
 
 
 
