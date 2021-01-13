@@ -19,8 +19,8 @@ export class OrderService{
         withCredentials: true,
     };
 
-    AllOrders(){
-       return this.http.get(this.baseurl + 'GetAllOrders' , this.headers);
+    GetOrdersByUserId(userId: string){
+       return this.http.get(this.baseurl + 'GetOrderByUserId/' + userId , this.headers);
     }
     getOrder(id: number){
         return this.http.get(this.baseurl + 'GetOrder/' + id , this.headers);

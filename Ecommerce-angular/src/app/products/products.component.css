@@ -1,6 +1,7 @@
 .home{
     /*background: #ecf0f1;*/
     background: #fafafa;
+    min-height: 80vh;
 }
 .input-group{
     padding-top: 20px;

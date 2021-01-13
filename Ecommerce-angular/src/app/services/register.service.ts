@@ -29,9 +29,12 @@ export class RegisterService {
     return this.http.get(this.baseUrl + 'IsUserExists?userName=' + name).pipe();
   }
   EmailExist(email: string){
-    return this.http.get(this.baseUrl + 'IsEmailExists?Email=' + email).pipe();
+    return this.http.get(this.baseUrl + 'IsEmailExists?Email=' + email);
   }
   Logout(){
     return this.http.get(this.baseUrl + 'Logout' , {withCredentials: true}).pipe();
+  }
+  EmailNotExist(email: string){
+    return this.http.get(this.baseUrl + 'IsEmailNotExists?Email=' + email);
   }
 }

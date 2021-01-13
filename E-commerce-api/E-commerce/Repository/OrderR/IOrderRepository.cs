@@ -8,7 +8,7 @@ namespace E_commerce.Repository.OrderR
 {
     public interface IOrderRepository
     {
-        Task<IEnumerable<Order>> GetOrdersAsync();
+        Task<IEnumerable<Order>> GetOrdersAsync(string id);
         Task<Order> GetOrderAsync(int id);
         Task<Order> AddOrderAsync(Order order);
     }

@@ -70,5 +70,14 @@ namespace E_commerce.Controllers
             }
             return NotFound();
         }
+        public async Task<IEnumerable<Order>> GetOrderByUserId(string userid)
+        {
+            var orders = await _repo.GetOrdersAsync(userid);
+            if (orders != null)
+            {
+                return orders;
+            }
+            return null;
+        }
     }
 }

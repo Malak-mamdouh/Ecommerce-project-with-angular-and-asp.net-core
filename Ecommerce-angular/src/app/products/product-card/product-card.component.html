@@ -19,7 +19,7 @@
                 <span class="mb-4">{{prod.price | currency}}</span>
               <div class="btn-group mb-2">
                 <button type="button" *ngIf="!IsAdmin()" (click)="addItemToCart()" 
-                class="btn btn-outline-danger mr-2">BUY NOW</button>
+                class="btn btn-block mr-2 btn-flat">BUY NOW</button>
                 <button type="button" (click)="onShow(prod.productId)" *ngIf="IsAdmin()"
                 [routerLink]="['/product', prod.productId]" 
                 class="btn btn-block text-uppercase bold btn-flat" 

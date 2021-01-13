@@ -6,4 +6,5 @@ export class Order{
     lastName: string;
     address: string;
     city: string;
+    email: string;
 }
