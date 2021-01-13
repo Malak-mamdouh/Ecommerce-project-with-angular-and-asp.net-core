@@ -191,19 +191,6 @@ namespace E_commerce.Controllers
             return StatusCode(StatusCodes.Status400BadRequest);
 
         }
-        [HttpGet]
-        [Route("IsEmailNotExists")]
-        public async Task<IActionResult> IsEmailNotExists(string email)
-        {
-            var result = await _db.Users.AnyAsync(n => n.Email == email);
-            if (!result)
-            {
-                return StatusCode(StatusCodes.Status200OK);
-                
-            }
-            return StatusCode(StatusCodes.Status400BadRequest);
-
-        }
         private async Task CreateAdmin()
         {
             var admin = await _manager.FindByNameAsync("Admin");

@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
     this.userForm.valueChanges.subscribe(success => {
       if (this.userForm.status == 'VALID')
       {
+        console.log('Form valid');
         this.isbusy = true;
       }
     }, ex => console.log(ex));

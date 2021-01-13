@@ -8,6 +8,5 @@ namespace E_commerce.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public virtual ICollection<Order> orders{ get; set; }
     }
 }

@@ -145,10 +145,6 @@ namespace E_commerce.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -161,12 +157,7 @@ namespace E_commerce.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("userId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("userId");
 
                     b.ToTable("orders");
                 });
@@ -317,13 +308,6 @@ namespace E_commerce.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("E_commerce.Models.Order", b =>
-                {
-                    b.HasOne("E_commerce.Models.ApplicationUser", "user")
-                        .WithMany("orders")
-                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("E_commerce.Models.OrderProduct", b =>
