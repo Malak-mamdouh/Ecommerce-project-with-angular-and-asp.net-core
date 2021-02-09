@@ -5,8 +5,7 @@
             <h3>Control Panel</h3>
         </div>
 
-        <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
+        <ul class="list-unstyled components mt-4">
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Users</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -19,37 +18,30 @@
                 
                 </ul>
             </li>
+
             <li>
-                <a (click)="CategoryList()" style="cursor: pointer;">Categories</a>
-            </li>
-            <!--<li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">pages</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
+                <a href="#CategorySubmenu" data-toggle="collapse" aria-expanded="false" 
+                class="dropdown-toggle" >Category List</a>
+                <ul class="collapse list-unstyled" id="CategorySubmenu">
                     <li>
-                        <a></a>
+                        <a href="#"></a>
                     </li>
                     <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 3</a>
+                        <a (click)="CategoryList()">Category List</a>
                     </li>
                 </ul>
-            </li>-->
-            <li>
-                <a (click)="AllProducts()">Products</a>
             </li>
             <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-
-        <ul class="list-unstyled CTAs">
-            <li>
-                <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download</a>
-            </li>
-            <li>
-                <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" 
+                class="dropdown-toggle" >Product List</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#"></a>
+                    </li>
+                    <li>
+                        <a (click)="AllProducts()">Product List</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>

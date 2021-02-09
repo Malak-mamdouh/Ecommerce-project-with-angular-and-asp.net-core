@@ -15,26 +15,26 @@ export class ProductCardComponent implements OnInit {
   @Input() prod: Product;
   products: Product[];
   single: Product;
+  notAvailable: boolean;
   constructor(private service: ProductService,
               private route: Router,
               private basketS: BasketService ,
               private admin: AdminService) { }
 
   ngOnInit(): void {
+    this.notAvailable = false;
   }
 
   IsAdmin(){
    return this.admin.isAdmin();
   }
-  /*GetProducts(){
-    this.service.Index().subscribe(list => {
-      this.products = list;
-    }, err => console.log(err));
-  }
-*/
 
   addItemToCart(){
-    this.basketS.addItemToBasket(this.prod);
+    if(this.prod.amount > 0){
+      this.basketS.addItemToBasket(this.prod);
+    }else{
+      this.notAvailable = true;
+    }
   }
 
   public createImgPath = (serverpath: string) => {

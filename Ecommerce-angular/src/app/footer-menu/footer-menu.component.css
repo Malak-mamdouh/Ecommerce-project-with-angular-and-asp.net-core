@@ -59,13 +59,16 @@
     display: block;
     font-size: 1.2em;
     margin-bottom: 8px;
-    width: 30px;
+    list-style: none;
 }
 .footer .footer-content .links ul a:hover{
     color: white;
     transition: all .3s;
     margin-left: 10px;
     text-decoration: none;
+    border-bottom: 1px solid #ffD700;
+    display: inline-block;
+    transition: 0.2s all ease-in-out;
 }
 .footer .footer-content .contact-us .contact-input{
     background: #272727;
@@ -86,6 +89,7 @@
 @media screen and (max-width: 960px){
     .footer{
         height: auto;
+        padding-bottom: 50px;
     }
     .footer .footer-content{
         height: auto;

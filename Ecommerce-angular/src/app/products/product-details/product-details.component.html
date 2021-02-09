@@ -11,8 +11,11 @@
                 <img [src]="createImgPath(product.url)" class="mx-auto d-block img-fluid" 
                 alt="profile picture" style="max-width: 60%;">
             
-            <img src="assets/images/in stock.png" class="mx-auto d-block 
+            <img src="assets/images/in stock.png" *ngIf="product.amount > 0" class="mx-auto d-block 
             img-fluid mt-2 mb-5" width="40%">
+            <img src="assets/images/sold.png" *ngIf="product.amount == 0" class="mx-auto
+             d-block" 
+            width="40%">
         </div>
         <div class="col-md-8">
                     <p class="card-text bold">{{product.description}}</p>
@@ -20,6 +23,11 @@
                 <button class="btn btn-warning mr-2" *ngIf="isAdmin()" type="button" (click)="EditProductClick(product.productId)">EDIT</button>
                 <button class="btn" style="background-color: #9575CD; color: white;" 
                 *ngIf="isAdmin()" type="button" (click)="onDelete(product.productId)">  DELETE </button>     
+                <div class="btn-group">
+                    <button type="button" *ngIf="!isAdmin()" (click)="addItemToCart()" 
+                    class="btn btn-block text-uppercase bold btn-flat">Add To Cart</button>
+                </div>
+                
         </div>
     </div>
 </div>

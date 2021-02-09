@@ -14,8 +14,13 @@ hr{
     align-items: center;
     padding: 40px 70px 40px;
     margin-bottom: 30px;
+    background: white;
 }
 
 .form-control{
     width: 280px;
+}
+.div{
+    background-color: rgb(241, 241, 241);
+    min-height: 100vh;
 }

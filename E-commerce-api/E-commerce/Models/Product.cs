@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace E_commerce.Models
 {
-    public class ProductM
+    public class Product
     {
         [Key]
         public int ProductId { get; set; }
-     
+        [Required]
         public string ProductName { get; set; }
-      
+        [Required]
         public string Description { get; set; }
         [Required]
         public float Price { get; set; }
@@ -24,6 +24,7 @@ namespace E_commerce.Models
         [ForeignKey("category")]
         public int categoryId { get; set; }
         public List<OrderProduct> orderProducts { get; set; }
+        public int Amount { get; set; }
 
     }
 }

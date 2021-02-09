@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using E_commerce.Models;
-using E_commerce.Repository.Product;
+using E_commerce.Repository.ProductR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +25,7 @@ namespace E_commerce.Controllers
         }
         [HttpGet]
         [Route("GetAllProducts")]
-        public async Task<IEnumerable<ProductM>> GetAllProducts(int? id , string search)
+        public async Task<IEnumerable<Product>> GetAllProducts(int? id , string search)
         {
             if (search != null)
             {
@@ -47,7 +47,7 @@ namespace E_commerce.Controllers
 
         [HttpPost]
         [Route("AddProduct")]
-        public async Task<IActionResult> AddProduct(ProductM model)
+        public async Task<IActionResult> AddProduct(Product model)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace E_commerce.Controllers
         }
         [HttpGet]
         [Route("GetProduct/{id}")]
-        public async Task<ActionResult<ProductM>> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var model = await _repo.GetProductAsync(id);
             if (model == null)
@@ -112,7 +112,7 @@ namespace E_commerce.Controllers
         }
         [HttpPut]
         [Route("EditProduct")]
-        public async Task<IActionResult> EditProduct(ProductM model)
+        public async Task<IActionResult> EditProduct(Product model)
         {
             if (!ModelState.IsValid)
             {

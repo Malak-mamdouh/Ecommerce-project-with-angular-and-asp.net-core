@@ -1,0 +1,11 @@
+td:hover ,tr:hover{
+   background-color: #dbc5db; 
+   
+}
+th{
+    background-color: #E6E6FA;
+}
+
+.trBody:hover{
+    color: white;
+}

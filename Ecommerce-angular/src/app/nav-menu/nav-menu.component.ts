@@ -46,7 +46,7 @@ export class NavMenuComponent implements OnInit {
     localStorage.clear();
 
   }
-
+  
   isAdmin(){
     const admin = !!this.auth.role;
     if (admin){
@@ -57,12 +57,6 @@ export class NavMenuComponent implements OnInit {
     return false;
   }
   isUserRegistered(){
-    const email = !!localStorage.getItem('Email');
-    const role = !!localStorage.getItem('Role');
-    const expire = !!localStorage.getItem('Expire');
-    if (email && role && expire){
-      return true;
-    }
-    return false;
+    return this.auth.isUserRegistered();
   }
 }

@@ -26,12 +26,15 @@ export class RegisterService {
     /*headers*/
   }
   UserNameExist(name: string){
-    return this.http.get(this.baseUrl + 'IsUserExists?userName=' + name).pipe();
+    return this.http.get(this.baseUrl + 'IsUserExists/' + name);
   }
   EmailExist(email: string){
-    return this.http.get(this.baseUrl + 'IsEmailExists?Email=' + email).pipe();
+    return this.http.get(this.baseUrl + 'IsEmailExists?Email=' + email);
+  }
+  EmailNotExist(email: string){
+    return this.http.get(this.baseUrl + 'EmailNotExists?Email=' + email);
   }
   Logout(){
-    return this.http.get(this.baseUrl + 'Logout' , {withCredentials: true}).pipe();
+    return this.http.get(this.baseUrl + 'Logout' , {withCredentials: true});
   }
 }

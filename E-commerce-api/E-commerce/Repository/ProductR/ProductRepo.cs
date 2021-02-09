@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace E_commerce.Repository.Product
+namespace E_commerce.Repository.ProductR
 {
     public class ProductRepo : IProductRepository
     {
@@ -15,13 +15,13 @@ namespace E_commerce.Repository.Product
         {
             _db = db;
         }
-        public async Task<ProductM> AddAsync(ProductM model)
+        public async Task<Product> AddAsync(Product model)
         {
             if (model == null)
                 return null;
             var cat = _db.categories.FirstOrDefault(x => x.Id == model.categoryId);
 
-            var product = new ProductM
+            var product = new Product
             {
                 ProductName = model.ProductName,
                 Description = model.Description,
@@ -46,7 +46,7 @@ namespace E_commerce.Repository.Product
             return true;
         }
 
-        public async Task<ProductM> EditProductAsync(ProductM model)
+        public async Task<Product> EditProductAsync(Product model)
         {
             if (model.ProductId == 0)
             {
@@ -68,13 +68,13 @@ namespace E_commerce.Repository.Product
             return product;
         }
 
-        public async Task<IEnumerable<ProductM>> GetAllProductsAsync()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
        
             return await _db.products.ToListAsync();
         }
 
-        public async Task<ProductM> GetProductAsync(int id)
+        public async Task<Product> GetProductAsync(int id)
         {
             if (id != 0)
             {

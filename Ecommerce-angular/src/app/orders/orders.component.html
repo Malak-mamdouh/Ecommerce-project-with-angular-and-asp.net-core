@@ -1,0 +1,39 @@
+<div *ngIf="orders == null">
+  <p class="text-danger">No Orders Here...</p>
+</div>
+<div class="container mt-5">
+  <div *ngIf="orders !== null">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="thead-dark">
+              <th scope="col">FName</th>
+              <th scope="col">LName</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Email</th>
+              <th scope="col">City</th>
+              <th scope="col">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="trBody" *ngFor="let order of orders" 
+            >
+              <td scope="row" class="font-italic">{{order.firstName}}</td>
+              <td class="font-italic">{{order.lastName}}</td>
+              <td class="font-italic">{{order.address}}</td>
+              <td class="font-italic">{{order.phoneNumber}}</td>
+              <td class="font-italic">{{order.email}}</td>
+              <td class="font-italic">{{order.city}}</td>
+              <td>
+
+                <button [routerLink]="['/orders' , order.id]" type="button" class="btn btn-warning">
+                  Details</button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

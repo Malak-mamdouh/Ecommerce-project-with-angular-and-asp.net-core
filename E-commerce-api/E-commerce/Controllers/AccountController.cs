@@ -167,7 +167,7 @@ namespace E_commerce.Controllers
         }*/
 
         [HttpGet]
-        [Route("IsUserExists")]
+        [Route("IsUserExists/{name}")]
         public async Task<IActionResult> IsUserExists(string name)
         {
             var result = await _db.Users.AnyAsync(n => n.UserName == name);
@@ -185,6 +185,18 @@ namespace E_commerce.Controllers
         {
             var result = await _db.Users.AnyAsync(n => n.Email == email);
             if (result)
+            {
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            return StatusCode(StatusCodes.Status400BadRequest);
+
+        }
+        [HttpGet]
+        [Route("EmailNotExists")]
+        public async Task<IActionResult> EmailNotExists(string email)
+        {
+            var result = await _db.Users.AnyAsync(n => n.Email == email);
+            if (!result)
             {
                 return StatusCode(StatusCodes.Status200OK);
             }

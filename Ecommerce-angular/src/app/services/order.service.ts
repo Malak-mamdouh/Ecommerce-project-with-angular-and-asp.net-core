@@ -4,6 +4,7 @@ import { Order } from '../models/order';
 import { BasketService } from '../basket/basket.service';
 import { Observable } from 'rxjs';
 import { Basket } from '../models/basket';
+import { Product } from '../models/Product';
 
 @Injectable({
     providedIn: 'root'
@@ -19,13 +20,13 @@ export class OrderService{
         withCredentials: true,
     };
 
-    AllOrders(){
-       return this.http.get(this.baseurl + 'GetAllOrders' , this.headers);
+    AllOrders(email: string): Observable<Order[]>{
+       return this.http.get<Order[]>(this.baseurl + 'GetOrders/' + email , this.headers);
     }
-    getOrder(id: number){
-        return this.http.get(this.baseurl + 'GetOrder/' + id , this.headers);
+    getOrder(id: number): Observable<Basket>{
+        return this.http.get<Basket>(this.baseurl + 'GetOrder/' + id , this.headers);
     }
-    addOrder(order: Order , id: string){
-        return this.http.post(this.baseurl + 'addOrder/' + id , order);
+    addOrder(order: Order){
+        return this.http.post(this.baseurl + 'addOrder/', order);
     }
 }

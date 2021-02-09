@@ -10,6 +10,6 @@ namespace E_commerce.Models
         public int OrderId { get; set; }
         public virtual Order order { get; set; }
         public int ProductId { get; set; }
-        public virtual ProductM product { get; set; }
+        public virtual Product product { get; set; }
     }
 }

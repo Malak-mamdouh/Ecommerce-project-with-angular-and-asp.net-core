@@ -15,7 +15,6 @@ import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { UserRolesComponent } from './Admin/user-roles/user-roles.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AccessDeniedComponent } from './access-denied/access-denied.component';
 import { AddproductComponent } from './products/addproduct/addproduct.component';
 import { UploadComponent } from './products/addproduct/upload/upload.component';
 import { ProductsComponent } from './products/products.component';
@@ -27,7 +26,9 @@ import { SharedModule } from './shared/shared.module';
 import { CategoryComponent } from './category/category.component';
 import { AddcategoryComponent } from './category/addcategory/addcategory.component';
 import { FilterPipe } from './pipe/filter.pipe';
-import { OrderComponent } from './order/order.component';
+import { AddOrderComponent } from './orders/addorder/addorder.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailsComponent } from './orders/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,6 @@ import { OrderComponent } from './order/order.component';
     UsersComponent,
     UserRolesComponent,
     NotFoundComponent,
-    AccessDeniedComponent,
     AddproductComponent,
     UploadComponent,
     ProductsComponent,
@@ -50,7 +50,9 @@ import { OrderComponent } from './order/order.component';
     CategoryComponent,
     AddcategoryComponent,
     FilterPipe,
-    OrderComponent
+    AddOrderComponent,
+    OrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

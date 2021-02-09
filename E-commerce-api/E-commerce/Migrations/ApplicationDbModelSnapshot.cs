@@ -145,6 +145,9 @@ namespace E_commerce.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -153,11 +156,19 @@ namespace E_commerce.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("cartId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("phoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("userId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("userId");
 
                     b.ToTable("orders");
                 });
@@ -177,20 +188,25 @@ namespace E_commerce.Migrations
                     b.ToTable("orderProducts");
                 });
 
-            modelBuilder.Entity("E_commerce.Models.ProductM", b =>
+            modelBuilder.Entity("E_commerce.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
                     b.Property<string>("ProductName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("categoryId")
@@ -310,6 +326,13 @@ namespace E_commerce.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("E_commerce.Models.Order", b =>
+                {
+                    b.HasOne("E_commerce.Models.ApplicationUser", "user")
+                        .WithMany("orders")
+                        .HasForeignKey("userId");
+                });
+
             modelBuilder.Entity("E_commerce.Models.OrderProduct", b =>
                 {
                     b.HasOne("E_commerce.Models.Order", "order")
@@ -318,14 +341,14 @@ namespace E_commerce.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("E_commerce.Models.ProductM", "product")
+                    b.HasOne("E_commerce.Models.Product", "product")
                         .WithMany("orderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("E_commerce.Models.ProductM", b =>
+            modelBuilder.Entity("E_commerce.Models.Product", b =>
                 {
                     b.HasOne("E_commerce.Models.Category", null)
                         .WithMany("products")

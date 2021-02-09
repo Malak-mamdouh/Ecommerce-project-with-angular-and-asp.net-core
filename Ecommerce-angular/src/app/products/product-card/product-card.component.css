@@ -7,6 +7,9 @@
 }
 .card-img-top{
     width: 85%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 .btn-flat{
     border-radius: 0px;
@@ -22,4 +25,12 @@
     background-position: left bottom;
     color: #fff;
     border: 2px solid #9575CD;
+}
+@media screen and (max-width: 960px){
+    .card-img-top{
+        width: 70%;
+    }
+    /*img{
+        margin-left: 3rem;
+    }*/
 }

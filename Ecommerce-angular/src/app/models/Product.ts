@@ -6,5 +6,6 @@ export class Product {
     description: string;
     price: number;
     url: string;
+    amount: number;
     categoryId: number;
 }

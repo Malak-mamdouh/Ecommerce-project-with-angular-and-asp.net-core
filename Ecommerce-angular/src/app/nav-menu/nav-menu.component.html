@@ -1,7 +1,11 @@
+<div>
+
 <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" routerLink="">E-<span>Market</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon">
+        <i class="fa fa-bars" style="color:#ffD700; font-size:28px;"></i>
+      </span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -33,6 +37,7 @@
               <a class="dropdown-item droplink" routerLink="login">Login</a>
             </div>
            <div *ngIf="isUserRegistered()">
+             <a class="dropdown-item droplink" routerLink="orders">My Orders</a>
             <a class="dropdown-item droplink" href="#" (click)="logout()">Logout</a> 
            </div>
           </div>
@@ -47,7 +52,7 @@
       
       </ul>
 
-
      
     </div>
   </nav>
+</div>

@@ -3,6 +3,7 @@ import { Product } from '../../models/Product';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { BasketService } from '../../basket/basket.service';
 
 @Component({
   selector: 'app-product-details',
@@ -13,7 +14,9 @@ export class ProductDetailsComponent implements OnInit {
 
   product: Product;
   constructor(private service: ProductService , private Activeroute: ActivatedRoute,
-              private route: Router , private auth: AuthService) { }
+              private route: Router , 
+              private auth: AuthService, 
+              private basketS: BasketService) { }
 
   ngOnInit(): void {
     const id = +this.Activeroute.snapshot.params['id'];
@@ -31,6 +34,9 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
 
+  addItemToCart(){
+    this.basketS.addItemToBasket(this.product);
+  }
   EditProductClick(id){
     this.route.navigate(['/editproduct' , id]);
   }

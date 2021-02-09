@@ -3,6 +3,7 @@ import { BasketService } from './basket.service';
 import { Observable } from 'rxjs';
 import { IBasket, IBasketItem } from '../models/basket';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-basket',
@@ -12,7 +13,9 @@ import { Router } from '@angular/router';
 export class BasketComponent implements OnInit {
 
   basket: Observable<IBasket>;
-  constructor(private basketS: BasketService , private route: Router) { }
+  constructor(private basketS: BasketService ,
+     private route: Router, 
+     private authService: AuthService) { }
 
   ngOnInit(): void {
     this.basket = this.basketS.basket;
@@ -34,6 +37,14 @@ export class BasketComponent implements OnInit {
 
   RemoveItem(item: IBasketItem){
     this.basketS.RemoveItem(item);
+  }
+  onNavigate(){
+    console.log('click');
+    if(this.authService.isUserRegistered()){
+      this.route.navigate(['/add-order']);
+    }else{
+      this.route.navigate(['/register']);
+    }
   }
 
 }

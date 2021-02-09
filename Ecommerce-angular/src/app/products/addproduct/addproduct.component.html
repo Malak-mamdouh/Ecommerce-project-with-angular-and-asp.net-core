@@ -39,6 +39,16 @@
                 </div>
             </div>
             <div class="form-group">
+              <label for="amount">Amount</label>
+              <textarea type="number" formControlName="amount" class="form-control" 
+              id="amount" [ngClass]="{'is-invalid' : 
+              !this.productForm.get('amount').valid && this.productForm.get('amount').touched}"></textarea>
+              <div class="text-danger" 
+                *ngIf="this.productForm.get('amount').invalid && this.productForm.get('amount').touched">
+                        {{messageValidate.description.required}}
+                </div>
+            </div>
+            <div class="form-group">
               <label for="categoryId">Category</label>
               <select class="form-control mb-2" formControlName="categoryId" id="categoryId" name="categoryId" [ngClass]="{'is-invalid' : 
               !this.productForm.get('categoryId').valid && this.productForm.get('categoryId').touched}">

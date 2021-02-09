@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +22,10 @@ namespace E_commerce.Models
         [Required]
         public string phoneNumber { get; set; }
         public List<OrderProduct> orderProducts { get; set; }
-
+        [ForeignKey("user")]
+        public string userId { get; set; }
+        public virtual ApplicationUser user { get; set; }
+        public string Email { get; set; }
+        public string cartId { get; set; }
     }
 }

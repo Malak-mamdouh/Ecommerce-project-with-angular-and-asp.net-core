@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder , FormGroup, Validators } from '@angular/forms';
+import { FormBuilder , FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterModel } from '../../models/register-model';
 import { RegisterService } from '../../services/register.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,8 @@ export class RegisterComponent implements OnInit {
   message: string;
   regex: RegExp;
   isbusy: boolean;
+  EmailExist: boolean;
+  NameExist: boolean;
   messageValidate = {
     username: {
       required: 'User Name is required',
@@ -40,6 +43,8 @@ export class RegisterComponent implements OnInit {
   };
   ngOnInit(): void {
     this.isbusy = false;
+    this.NameExist = false;
+    this.EmailExist = false;
     this.message = '';
     this.reg = {
       userName: '',
@@ -116,22 +121,30 @@ export class RegisterComponent implements OnInit {
 
   isUserNameExist(){
     const name = this.userForm.value.userName;
-    if (name != null && name !== '' && this.isbusy === false){
+    if (name != null && name !== ''){
       this.regService.UserNameExist(name).subscribe(suc => {
         this.messageValidate.username.nameExist = 'This name is used';
-      }, err => console.log(err));
+        this.NameExist = true;
+      }, err => {this.messageValidate.username.nameExist = '';
+                this.NameExist = false;
+              });
       return true;
     }
     return false;
   }
   isEmailExist(){
     const email = this.userForm.value.email;
-    if (email != null && email !== '' && this.isbusy === false){
+    if (email != null && email !== ''){
       this.regService.EmailExist(email).subscribe(succ => {
         this.messageValidate.email.emailExist = 'Email is used';
-    } , err => console.log(err));
-      return true;
+        this.EmailExist = true;
+    } , err => {
+      this.messageValidate.email.emailExist = '';
+      this.EmailExist = false;
+    });
+    return true;
     }
     return false;
   }
+  
 }

@@ -16,12 +16,9 @@
 .navbar{
     background: #512DA8;
 }
+
 .dropdown-menu{
-    min-width: 9rem;
-}
-.dropdown-item{
-    width: 90%;
-    
+    min-width: 8rem;  
 }
 a{
     color: white;
@@ -29,13 +26,26 @@ a{
 .droplink{
     color: #9575CD!important;
 }
+.dropdown-item{
+    min-width: 8rem;
+}
+.nav-link , .nav-item{
+    padding-left: 5px;
+}
 a{
-    margin-left: 8px;
     margin-top: 2px;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
+}
+.color{
+    margin-left: 8px;
+    
 }
 .active , .color:hover{
-    border-radius: 5%;
     background-color: #9575CD;
+}
+
+.navbar-toggler:focus, .navbar-toggler:hover{
+    border: 1px solid #ffD700;
+    outline: #ffD700;
 }
 /*303036*/

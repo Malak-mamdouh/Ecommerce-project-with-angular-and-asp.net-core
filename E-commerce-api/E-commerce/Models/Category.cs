@@ -13,6 +13,6 @@ namespace E_commerce.Models
         [Required]
         public string categoryName { get; set; }
         public int Num_of_products { get; set; }
-        public virtual ICollection<ProductM> products { get; set; }
+        public virtual ICollection<Product> products { get; set; }
     }
 }

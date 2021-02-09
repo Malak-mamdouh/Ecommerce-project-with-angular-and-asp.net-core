@@ -60,7 +60,8 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
       productName: ['' , Validators.required],
       description: ['' , Validators.required],
       price: ['' , Validators.required],
-      categoryId: [0 , Validators.required]
+      categoryId: [0 , Validators.required],
+      amount: [0]
     });
     this.response = {
       url: ''
@@ -71,7 +72,8 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
       description: '',
       price: 0,
       url: '',
-      categoryId: 0
+      categoryId: 0,
+      amount: 0
     };
 
     this.activeRoute.paramMap.subscribe(param => {
@@ -107,7 +109,8 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
         productName: this.product.productName,
         description: this.product.description,
         price: this.product.price,
-        categoryId: this.product.categoryId
+        categoryId: this.product.categoryId,
+        amount: this.product.amount
       });
     }
   }
@@ -131,11 +134,6 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
         this.productSer.AddProduct(this.product).subscribe(x => {
           this.message = 'Product has been added successfully';
           console.log(x.categoryId);
-         /* this.categories.forEach(item => {
-            if (item.id === x.categoryId){
-              item.num_of_products++;
-            }
-          });*/
         } , err => console.log(err));
       }
       else{
@@ -163,5 +161,6 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
     this.product.price = this.productForm.value.price;
     // tslint:disable-next-line: radix
     this.product.categoryId = parseInt(this.productForm.value.categoryId);
+    this.product.amount = this.productForm.value.amount;
   }
 }

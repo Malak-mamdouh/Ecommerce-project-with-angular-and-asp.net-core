@@ -1,7 +1,8 @@
 
      <div class="card shadow-sm">
-            <a [routerLink]="['/product' , prod.productId]" style="cursor: pointer;">
-              <img [src]="createImgPath(prod.url)" class="card-img-top ml-3 mt-2" alt="profile picture"
+            <a [routerLink]="['/product' , prod.productId]" style="cursor: pointer;
+            text-align: center;">
+              <img [src]="createImgPath(prod.url)" class="card-img-top mt-2" alt="profile picture"
               height="190">
             </a>
             <div class="card-body d-flex flex-column">
@@ -17,9 +18,12 @@
                   <i class="fa fa-star-o"></i>
               </div>
                 <span class="mb-4">{{prod.price | currency}}</span>
+                <div class="text-danger" *ngIf="notAvailable">
+                  Not Available Now
+                </div>
               <div class="btn-group mb-2">
                 <button type="button" *ngIf="!IsAdmin()" (click)="addItemToCart()" 
-                class="btn btn-outline-danger mr-2">BUY NOW</button>
+                class="btn btn-block text-uppercase bold btn-flat">BUY NOW</button>
                 <button type="button" (click)="onShow(prod.productId)" *ngIf="IsAdmin()"
                 [routerLink]="['/product', prod.productId]" 
                 class="btn btn-block text-uppercase bold btn-flat" 

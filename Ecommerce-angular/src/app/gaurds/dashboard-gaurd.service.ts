@@ -14,7 +14,7 @@ export class DashboardGaurdService implements CanActivate {
     const roleName = this.auth.role;
     if (role){
       if (roleName.toLowerCase() !== 'admin'){
-        this.route.navigate(['access-denied']).then(x => {window.location.reload(); });
+        this.route.navigate(['notFound']).then(x => {window.location.reload(); });
       }
       return true;
     }else{

@@ -8,7 +8,7 @@ using E_commerce.Repository.Admin;
 using E_commerce.Repository.BasketR;
 using E_commerce.Repository.CategoryR;
 using E_commerce.Repository.OrderR;
-using E_commerce.Repository.Product;
+using E_commerce.Repository.ProductR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
