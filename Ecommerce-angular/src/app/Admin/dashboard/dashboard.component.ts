@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   isAddCategory: boolean;
   products: Product[];
   isproductList: boolean;
+  isAddProduct: boolean;
   searchTerm = '';
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
     this.isUserRoleList = false;
     this.isAddCategory = false;
     this.isproductList = false;
+    this.isAddProduct = false;
     // tslint:disable-next-line: only-arrow-functions
     $(document).ready( function() {
         // tslint:disable-next-line: only-arrow-functions
@@ -45,6 +47,7 @@ export class DashboardComponent implements OnInit {
     this.isCategoryList = false;
     this.isUserList = false;
     this.isAddCategory = false;
+    this.isAddProduct = false;
     return this.isproductList = true;
   }
   addcategory(){
@@ -52,6 +55,7 @@ export class DashboardComponent implements OnInit {
     this.isCategoryList = false;
     this.isUserList = false;
     this.isproductList = false;
+    this.isAddProduct = false;
     return this.isAddCategory = true;
   }
   CheckUser(){
@@ -59,6 +63,8 @@ export class DashboardComponent implements OnInit {
     this.isCategoryList = false;
     this.isCategoryList = false;
     this.isproductList = false;
+    this.isAddCategory = false;
+    this.isAddProduct = false;
     return this.isUserList = true;
   }
 
@@ -67,13 +73,23 @@ export class DashboardComponent implements OnInit {
     this.isCategoryList = false;
     this.isCategoryList = false;
     this.isproductList = false;
+    this.isAddCategory = false;
+    this.isAddProduct = false;
     return this.isUserRoleList = true;
   }
   CategoryList(){
     this.isUserRoleList = false;
     this.isUserList = false;
     this.isproductList = false;
-    this.isCategoryList = false;
+    this.isAddCategory = false;
     return this.isCategoryList = true;
+  }
+  AddProduct(){
+    this.isUserRoleList = false;
+    this.isUserList = false;
+    this.isproductList = false;
+    this.isAddCategory = false;
+    this.isAddCategory = false;
+    return this.isAddProduct = true;
   }
 }

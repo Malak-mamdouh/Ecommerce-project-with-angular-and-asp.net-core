@@ -23,7 +23,6 @@ const routes: Routes = [
     {path: 'register' , component: RegisterComponent},
     {path: 'dashboard' , component: DashboardComponent , canActivate: [DashboardGaurdService]},
     {path: 'notFound' , component: NotFoundComponent},
-    {path: 'add-product', component: AddproductComponent , canActivate: [DashboardGaurdService]},
     {path: 'products' , component: ProductsComponent},
     {path: 'product/:id' , component: ProductDetailsComponent},
     {path: 'editproduct/:id' , component: AddproductComponent ,

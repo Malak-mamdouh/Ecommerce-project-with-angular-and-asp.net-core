@@ -13,6 +13,7 @@ import { BasketService } from '../../basket/basket.service';
 export class ProductDetailsComponent implements OnInit {
 
   product: Product;
+  notAvailable = false;
   constructor(private service: ProductService , private Activeroute: ActivatedRoute,
               private route: Router , 
               private auth: AuthService, 
@@ -35,8 +36,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addItemToCart(){
-    this.basketS.addItemToBasket(this.product);
+    if(this.product.amount > 0){
+      this.basketS.addItemToBasket(this.product);
+    }else{
+      this.notAvailable = true;
+    }
   }
+
   EditProductClick(id){
     this.route.navigate(['/editproduct' , id]);
   }

@@ -27,6 +27,7 @@ namespace E_commerce.Repository.ProductR
                 Description = model.Description,
                 Price = model.Price,
                 url = model.url,
+                Amount = model.Amount,
                 categoryId = model.categoryId
             };
             await _db.products.AddAsync(product);

@@ -1,5 +1,5 @@
 <div class="container mt-4 mb-4 ml-4">
-  <h4 style="color: #512DA8;">Create Category</h4>
+  
     <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="message !== '' && message !== null">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -7,8 +7,12 @@
       </button>
       {{message}}
     </div>
-    <div class="col-md-5 add-category border rounded">
+    <h4>Add Category</h4>
+    <div class="col-md-7 add-category">
         <form [formGroup]="categoryForm" (ngSubmit)="add()">
+          <div class="formBackground">
+
+       
             <div class="form-group">
               <label for="categoryName">Name</label>
               <input type="text" formControlName="categoryName" class="form-control" 
@@ -25,8 +29,10 @@
               id="num_of_products" [ngClass]="{'is-invalid' : 
               !this.categoryForm.get('num_of_products').valid && this.categoryForm.get('num_of_products').touched}">
             </div>
-            <button type="submit" [disabled]="!categoryForm.valid" class="btn btn-warning mt-2">{{btntitle}}</button>
-        </form>
+            <button type="submit" [disabled]="!categoryForm.valid" 
+            class="btn btn-block mt-2" style="background-color: #7386D5; color: white;">{{btntitle}}</button>
+          </div>
+          </form>
     </div>
     
   </div>

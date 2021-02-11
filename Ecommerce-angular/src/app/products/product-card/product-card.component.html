@@ -1,5 +1,5 @@
 
-     <div class="card shadow-sm">
+     <div class="card shadow-sm" [ngClass]="{'danger' : notAvailable}">
             <a [routerLink]="['/product' , prod.productId]" style="cursor: pointer;
             text-align: center;">
               <img [src]="createImgPath(prod.url)" class="card-img-top mt-2" alt="profile picture"

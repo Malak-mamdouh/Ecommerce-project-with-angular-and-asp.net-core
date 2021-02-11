@@ -18,8 +18,8 @@
             width="40%">
         </div>
         <div class="col-md-8">
-                    <p class="card-text bold">{{product.description}}</p>
-                    <h3 class="mt-4">{{product.price | currency}}</h3>           
+                    <p class="card-text bold" style="font-size: 18px; font-weight: 500;">{{product.description}}</p>
+                    <h3 class="mt-4" style="color: rgb(77, 77, 77);">{{product.price | currency}}</h3>           
                 <button class="btn btn-warning mr-2" *ngIf="isAdmin()" type="button" (click)="EditProductClick(product.productId)">EDIT</button>
                 <button class="btn" style="background-color: #9575CD; color: white;" 
                 *ngIf="isAdmin()" type="button" (click)="onDelete(product.productId)">  DELETE </button>     
@@ -27,6 +27,9 @@
                     <button type="button" *ngIf="!isAdmin()" (click)="addItemToCart()" 
                     class="btn btn-block text-uppercase bold btn-flat">Add To Cart</button>
                 </div>
+                <div class="text-danger" *ngIf="notAvailable">
+                    {{product.productName}} is not available now
+                  </div>
                 
         </div>
     </div>

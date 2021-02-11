@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { RegisterService } from '../services/register.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BasketService } from '../basket/basket.service';
 import { Observable } from 'rxjs';
 import { IBasket } from '../models/basket';
@@ -17,10 +17,14 @@ export class NavMenuComponent implements OnInit {
   constructor(private auth: AuthService,
               private  service: RegisterService,
               private route: Router,
-              private basketS: BasketService) { }
+              private basketS: BasketService,
+              private activatedRoute: ActivatedRoute) { 
+                
+              }
   title = 'E-Commerce';
   name = '';
   ngOnInit(){
+   
     this.basket = this.basketS.basket;
 
     if (this.isUserRegistered()){

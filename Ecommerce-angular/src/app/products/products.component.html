@@ -7,12 +7,13 @@
                     <button class="btn btn-default" (click)="onSearch()"><i class="fa fa-search"></i></button> 
                     <button class="btn btn-outline-warning ml-3" style="width: 80px;" (click)="onReset()">Reset</button>
                 </div>-->
-                <input (keyup.enter)="onSearch()" type="text" #search placeholder="Search" class="search-txt">
+                <input (keyup.enter)="onSearch()" type="text" #search placeholder="Search" 
+                class="search-txt font-italic">
                     <i class="fa fa-search"></i>
             </form>
         </div>
         <div class="row">
-            <section class="col-lg-2 mt-2" id="side">
+            <section class="col-lg-2 mt-5" id="side">
                 <div class="side-menu">
                     <ul class="list-group my-3">
                       <li class="list-group-item" *ngFor="let category of categoryList"

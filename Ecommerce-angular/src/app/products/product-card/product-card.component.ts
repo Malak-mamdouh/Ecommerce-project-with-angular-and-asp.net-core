@@ -34,6 +34,9 @@ export class ProductCardComponent implements OnInit {
       this.basketS.addItemToBasket(this.prod);
     }else{
       this.notAvailable = true;
+      setTimeout(function(){
+        this.notAvailable = false;
+      }, 3000);
     }
   }
 

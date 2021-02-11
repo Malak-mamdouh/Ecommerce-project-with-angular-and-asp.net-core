@@ -11,7 +11,6 @@ import { Order } from '../models/order';
 export class OrdersComponent implements OnInit {
 
   orders: Order[];
-  order: Order;
   constructor(private auth: AuthService,
     private orderService: OrderService) { }
 
@@ -19,6 +18,7 @@ export class OrdersComponent implements OnInit {
     const email = this.auth.email;
     this.orderService.AllOrders(email).subscribe(list => {
       this.orders = list;
+      console.log(this.orders);
     } , err => console.log(err));
   }
 
