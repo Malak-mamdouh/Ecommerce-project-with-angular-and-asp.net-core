@@ -19,9 +19,7 @@
                   <i class="fa fa-star-o"></i>
               </div>
                 <span class="mb-4">{{prod.price | currency}}</span>
-                <div class="text-danger" *ngIf="notAvailable">
-                  Not Available Now
-                </div>
+                
               <div class="btn-group mb-2">
                 <button type="button" *ngIf="!IsAdmin()" (click)="addItemToCart()" 
                 class="btn btn-block text-uppercase bold btn-flat">BUY NOW</button>
