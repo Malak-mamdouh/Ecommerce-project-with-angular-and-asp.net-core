@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using E_commerce.Models;
 using E_commerce.Repository.ProductR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,7 +45,7 @@ namespace E_commerce.Controllers
             }
             return null;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("AddProduct")]
         public async Task<IActionResult> AddProduct(Product model)
@@ -73,6 +74,7 @@ namespace E_commerce.Controllers
         }
         [HttpPost]
         [Route("Upload")]
+        [Authorize(Roles = "Admin")]
         [DisableRequestSizeLimit]
         public IActionResult Upload()
         {
@@ -97,6 +99,7 @@ namespace E_commerce.Controllers
                 return BadRequest();
             }
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -110,6 +113,7 @@ namespace E_commerce.Controllers
             }
             return BadRequest();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [Route("EditProduct")]
         public async Task<IActionResult> EditProduct(Product model)

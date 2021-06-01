@@ -4,20 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using E_commerce.Models;
 using E_commerce.Repository.CategoryR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_commerce.Controllers
 {
+    
     [Route("[controller]")]
-    [ApiController]
+    [ApiController]    
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository _repo;
+        private readonly ApplicationDb _db;
 
-        public CategoryController(ICategoryRepository repo)
+        public CategoryController(ICategoryRepository repo , ApplicationDb db)
         {
             _repo = repo;
+            _db = db;
         }
         [HttpGet]
         [Route("GetCategories")]
@@ -30,7 +36,20 @@ namespace E_commerce.Controllers
             }
             return null;
         }
+        [HttpGet]
+        [Route("IsCategoryExists/{name}")]
+        public async Task<IActionResult> IsCategoryExists(string name)
+        {
+            var result = await _db.categories.AnyAsync(n => n.categoryName == name);
+            if (result)
+            {
+                return StatusCode(StatusCodes.Status200OK);
 
+            }
+            return null;
+
+        }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [Route("AddCategory")]
         public async Task<IActionResult> AddCategory(Category model)
@@ -45,6 +64,7 @@ namespace E_commerce.Controllers
             }
             return BadRequest();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         [Route("EditCategory")]
         public async Task<IActionResult> EditCategory(Category model)
@@ -60,6 +80,7 @@ namespace E_commerce.Controllers
             }
             return Ok();
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("Delete/{id}")]
         public async Task<bool> Delete(int id)
@@ -71,6 +92,7 @@ namespace E_commerce.Controllers
             }
             return false;
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [Route("GetCategory/{id}")]
         public async Task<Category> GetCategory(int id)

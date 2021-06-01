@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using E_commerce.BasketModel;
 using E_commerce.Repository.BasketR;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_commerce.Controllers
 {
+    [Authorize(Roles = "User")]
     [Route("[controller]")]
     [ApiController]
     public class BasketController : ControllerBase

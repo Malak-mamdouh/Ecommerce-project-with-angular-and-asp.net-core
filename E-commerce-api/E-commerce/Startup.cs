@@ -21,6 +21,9 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace E_commerce
 {
@@ -42,7 +45,8 @@ namespace E_commerce
             services.AddTransient<ICategoryRepository, CategoryRepo>();
             services.AddTransient<IBasketRepository, BasketRepository>();
             services.AddTransient<IOrderRepository , OrderRepo>();
-            services.Configure<FormOptions>(o => {
+            services.Configure<Jwt>(Configuration.GetSection("JWT"));
+            /*services.Configure<FormOptions>(o => {
                 o.ValueLengthLimit = int.MaxValue;
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
@@ -51,7 +55,7 @@ namespace E_commerce
             {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            });*/
             services.AddControllers();
             services.AddDbContext<ApplicationDb>(option => option.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             services.AddIdentity<ApplicationUser , ApplicationRole>(options => {
@@ -64,7 +68,7 @@ namespace E_commerce
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
             })
                 .AddEntityFrameworkStores<ApplicationDb>();
-            services.AddAuthentication(
+            /*services.AddAuthentication(
                options =>
                {
                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -79,7 +83,28 @@ namespace E_commerce
                    options.LogoutPath = "/Account/Logout";
                    options.SlidingExpiration = true; //to re-issue a new cookie with a new expirationTime 
                 }
-               );
+               );*/
+            services.AddAuthentication(
+                options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                }).AddJwtBearer(option => {
+                    option.RequireHttpsMetadata = false;
+                    option.SaveToken = true;
+                    option.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidIssuer = (Configuration["JWT: Issuer"]),
+                        ValidAudience = (Configuration["JWT: Audience"]),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.
+                        GetBytes("supersecretKey@12345"))
+                    };
+                });
             services.AddSingleton<IConnectionMultiplexer>(x => {
                 var configuration = ConfigurationOptions.Parse(Configuration
                     .GetConnectionString("Redis"), true);

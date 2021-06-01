@@ -60,11 +60,11 @@ namespace E_commerce.Repository.OrderR
             return null;
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersAsync(string email)
+        public async Task<IEnumerable<Order>> GetOrdersAsync(string email , string userId)
         {
             if (email != null) 
             {
-                var orders = _db.orders.Where(p => p.Email == email);
+                var orders = _db.orders.Where(p => p.Email == email && p.userId == userId);
                 return orders;
             }
             return null;

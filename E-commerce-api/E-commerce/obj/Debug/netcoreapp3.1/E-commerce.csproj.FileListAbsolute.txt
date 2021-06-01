@@ -268,7 +268,6 @@ C:\Users\rt\Documents\GitHub\Ecommerce-project-with-angular-and-asp.net-core\E-c
 C:\Users\rt\Documents\GitHub\Ecommerce-project-with-angular-and-asp.net-core\E-commerce-api\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.pdb
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\appsettings.Development.json
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\appsettings.json
-E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\E-commerce.exe
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\E-commerce.deps.json
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\E-commerce.runtimeconfig.json
@@ -400,3 +399,13 @@ E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\obj
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\obj\Debug\netcoreapp3.1\staticwebassets\E-commerce.StaticWebAssets.xml
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.dll
 E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.pdb
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.csproj.CoreCompileInputs.cache
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\obj\Debug\netcoreapp3.1\scopedcss\bundle\E-commerce.styles.css
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.genruntimeconfig.cache
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+E:\Ecommerce-project-with-angular-and-asp.net-core\e-commerce-api\E-commerce\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using E_commerce.BasketModel;
 using E_commerce.Models;
 using E_commerce.Repository.BasketR;
 using E_commerce.Repository.OrderR;
 using E_commerce.Repository.ProductR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_commerce.Controllers
 {
+    [Authorize(Roles = "User")]
     [Route("[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -73,7 +76,13 @@ namespace E_commerce.Controllers
         [Route("GetOrder/{id}")]
         public async Task<ActionResult<Basket>> GetOrder(int id)
        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             var order = await _repo.GetOrderAsync(id);
+            if (claim.Value != order.userId)
+            {
+                return NotFound();
+            }
             if (order == null)
             {
                 return NotFound();
@@ -89,7 +98,10 @@ namespace E_commerce.Controllers
         [Route("GetOrders/{email}")]
         public async Task<IEnumerable<Order>> GetOrders(string email)
         {
-            var orders = await _repo.GetOrdersAsync(email);
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var orders = await _repo.GetOrdersAsync(email , claim.Value);
+                        
             if (orders != null)
             {
                 return orders;

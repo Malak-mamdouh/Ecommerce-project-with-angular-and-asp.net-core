@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using E_commerce.Models;
 using E_commerce.ModelView;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace E_commerce.Controllers
 {
@@ -25,20 +30,22 @@ namespace E_commerce.Controllers
         private readonly UserManager<ApplicationUser> _manager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
-
+        private readonly Jwt _jwt;
         public AccountController(ApplicationDb db, 
                UserManager<ApplicationUser> manager,
                SignInManager<ApplicationUser> signInManager,
-               RoleManager<ApplicationRole> roleManager)
+               RoleManager<ApplicationRole> roleManager ,
+               IOptions<Jwt> jwt)
         {
             _db = db;
             _manager = manager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _jwt = jwt.Value;
         }
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<ActionResult<string>> Register(RegisterModel model)
         {
             if (model == null)
             {
@@ -97,7 +104,7 @@ namespace E_commerce.Controllers
         }
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<string>> Login(LoginModel model)
+        public async Task<ActionResult<AuthModel>> Login(LoginModel model)
         {
             await CreateRoles();
             await CreateAdmin();
@@ -120,8 +127,15 @@ namespace E_commerce.Controllers
                 }
                 var roleName = await GetRolebyId(user.Id);
                 if (roleName != null)
-                    AddCookies(user.UserName ,roleName , user.Id , user.Email, model.RememberMe);
-                return roleName;
+                {
+                    var securityToken = await createToken(user);
+                    var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
+                    return new AuthModel { 
+                        roleName = roleName,
+                        token = token
+                    };
+
+                }
             }
             else if(result.IsLockedOut)
             {
@@ -146,25 +160,6 @@ namespace E_commerce.Controllers
                 await _roleManager.CreateAsync(role);
             }
         }
-
-       /* [HttpGet]
-        [Route("GetRoleName/{email}")]
-        public async Task<string> GetRoleName(string email)
-        {
-            var user = await _manager.FindByEmailAsync(email);
-            if (user != null)
-            {
-                var userRole = await _db.UserRoles.FirstOrDefaultAsync(u => u.UserId == user.Id);
-                if (userRole != null)
-                {
-                    var roleName = await _db.Roles.Where(r => r.Id == userRole.RoleId).Select(n => n.Name).FirstOrDefaultAsync();
-                    
-                    if (roleName != null)
-                        return roleName;
-                }
-            }
-            return null;
-        }*/
 
         [HttpGet]
         [Route("IsUserExists/{name}")]
@@ -234,7 +229,7 @@ namespace E_commerce.Controllers
             return null;
 
         }
-        private async void AddCookies(string username, string rolename , string userId, string email, bool remember)
+       /* private async void AddCookies(string username, string rolename , string userId, string email, bool remember)
         {
             var claim = new List<Claim>
             {
@@ -268,6 +263,43 @@ namespace E_commerce.Controllers
                     new ClaimsPrincipal(claimIdentity),
                     authProperties);
             }
+        }*/
+       private async Task<SecurityToken> createToken(ApplicationUser user)
+        {
+            var roles = await _manager.GetRolesAsync(user);
+            var claims = new List<Claim> {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.UserName)
+            };
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+            
+            var symmetricKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwt.Key));
+            var signingCredentials = new SigningCredentials(symmetricKey, SecurityAlgorithms.HmacSha256);
+
+
+           /* var jwtSecurityToken = new JwtSecurityToken(
+                issuer: _jwt.Issuer,
+                audience: _jwt.Audience,
+                claims: claims,
+                expires: DateTime.Now.AddDays(_jwt.Days),
+                signingCredentials: signingCredentials
+                );*/
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(20),
+                Audience = _jwt.Audience,
+                Issuer = _jwt.Issuer,
+                SigningCredentials = signingCredentials
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return token;
         }
         [Authorize]
         [HttpGet]
@@ -303,7 +335,8 @@ namespace E_commerce.Controllers
         [Route("Logout")]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync(JwtBearerDefaults.AuthenticationScheme);
+
             return Ok();
         }
     }
