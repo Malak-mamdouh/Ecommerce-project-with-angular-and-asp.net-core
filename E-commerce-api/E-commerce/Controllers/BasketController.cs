@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace E_commerce.Controllers
 {
-    [Authorize(Roles = "User")]
+    
     [Route("[controller]")]
     [ApiController]
     public class BasketController : ControllerBase
@@ -21,6 +21,7 @@ namespace E_commerce.Controllers
         {
             _repo = repo;
         }
+        [Authorize(Roles = "User")]
         [HttpGet]
         [Route("GetBasket/{id}")]
         public async Task<ActionResult<Basket>> GetBasket(string id)
