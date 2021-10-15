@@ -18,37 +18,40 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of basket.items" class="bg-white">
-                    <th scope="row">
-                        <div class="p-2">
-                            <img [src]="createImgPath(item.url)" alt="noImage" 
-                            class="img-fluid" style="max-height: 50px;">
-                            <div class="ml-3 d-inline-block align-middle">
-                                <h5 class="mb-0">
-                                    <a style="cursor: pointer;" (click)="Show(item.id)" class="text-dark">
-                                        {{item.productName}}</a>
-                                </h5>
-                                <span class="text-muted font-weight-normal
-                                font-italic d-block">
-                                
-                                </span>
+                <ng-container *ngIf="basket != null">
+                    <tr *ngFor="let item of basket.items" class="bg-white">
+                        <th scope="row">
+                            <div class="p-2">
+                                <img [src]="createImgPath(item.url)" alt="noImage" 
+                                class="img-fluid" style="max-height: 50px;">
+                                <div class="ml-3 d-inline-block align-middle">
+                                    <h5 class="mb-0">
+                                        <a style="cursor: pointer;" (click)="Show(item.id)" class="text-dark">
+                                            {{item.productName}}</a>
+                                    </h5>
+                                    <span class="text-muted font-weight-normal
+                                    font-italic d-block">
+                                    
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </th>
-                   
-                    <td class="align-middle">
-                        <strong>{{item.price | currency}}</strong>
-                    </td>
-                    <td class="align-middle text-center font-weight-bold" 
-                    style="font-size: 1.5em;">
+                        </th>
+                       
+                        <td class="align-middle">
+                            <strong>{{item.price | currency}}</strong>
+                        </td>
+                        <td class="align-middle text-center font-weight-bold" 
+                        style="font-size: 1.5em;">
+                                
+                                    {{item.quantity}}
                             
-                                {{item.quantity}}
-                        
-                    </td>
-                    <td class="align-middle">
-                       <strong>{{item.price * item.quantity | currency}}</strong> 
-                    </td>
-                </tr>
+                        </td>
+                        <td class="align-middle">
+                           <strong>{{item.price * item.quantity | currency}}</strong> 
+                        </td>
+                    </tr>
+                </ng-container>
+                
             </tbody>
         </table>
     </div>

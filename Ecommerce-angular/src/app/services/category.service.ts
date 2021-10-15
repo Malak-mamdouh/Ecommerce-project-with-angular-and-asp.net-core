@@ -18,10 +18,13 @@ export class CategoryService {
   };
 
   Index(): Observable<Category[]>{
-    return this.http.get<Category[]>(this.baseUrl + 'GetCategories').pipe();
+    return this.http.get<Category[]>(this.baseUrl + 'GetCategories');
   }
   getcategory(id: number): Observable<Category>{
-    return this.http.get<Category>(this.baseUrl + 'GetCategory/' + id).pipe();
+    return this.http.get<Category>(this.baseUrl + 'GetCategory/' + id);
+  }
+  IsCategoryExists(name: string){
+    return this.http.get(this.baseUrl + 'IsCategoryExists/' + name);
   }
   AddCategory(model: Category): Observable<Category>{
     return this.http.post<Category>(this.baseUrl + 'AddCategory' , model , this.headers).pipe();

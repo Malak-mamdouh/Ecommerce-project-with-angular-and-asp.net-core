@@ -7,6 +7,7 @@ import { IBasket, IBasketTotal} from '../../models/basket';
 import { BehaviorSubject} from 'rxjs';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../services/register.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-addorder',
@@ -19,7 +20,8 @@ export class AddOrderComponent implements OnInit {
               private orderS: OrderService,
               private basketS: BasketService,
               private route: Router,
-              private registerService: RegisterService) { }
+              private registerService: RegisterService,
+              private auth: AuthService) { }
 
   
   message: string;
@@ -58,7 +60,7 @@ export class AddOrderComponent implements OnInit {
       address: ['' , Validators.required],
       city: ['' , Validators.required],
       phone: ['' , Validators.required],
-      email: ['' , [Validators.required , Validators.email]]    
+      email: ['' , [Validators.required]]    
     });
     this.order = {
       id: 0,
@@ -104,17 +106,12 @@ export class AddOrderComponent implements OnInit {
 
   EmailNotExist(){
     const email = this.orderForm.value.email;
-    this.messageValidate.email.notExist = '';
-    if (email != null && email !== ''){
-      this.registerService.EmailNotExist(email).subscribe(succ => {
-        this.messageValidate.email.notExist = 'You do not have an account';
-        this.emailExist = true;
-    } , err => {
+    if(email === this.auth.email){
       this.messageValidate.email.notExist = '';
-      this.emailExist = false;
-    });
       return true;
+    }else if(email !== this.auth.email){
+      this.messageValidate.email.notExist = 'invalid account';
+      return false;
     }
-    return false;
   }
 }

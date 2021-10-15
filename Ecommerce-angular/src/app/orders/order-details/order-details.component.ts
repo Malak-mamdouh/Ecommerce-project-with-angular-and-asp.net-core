@@ -4,7 +4,7 @@ import { OrderService } from '../../services/order.service';
 import { Order } from '../../models/order';
 import { ProductsComponent } from '../../products/products.component';
 import { Product } from '../../models/Product';
-import { Basket, IBasketItem } from '../../models/basket';
+import { Basket, IBasketItem, IBasket } from '../../models/basket';
 import { BasketService } from '../../basket/basket.service';
 
 @Component({
@@ -18,14 +18,16 @@ export class OrderDetailsComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute,
     private orderService: OrderService, 
     private basketS: BasketService , 
-    private route: Router) { }
+    private route: Router) {
+
+     }
 
   ngOnInit(): void {
     const id = +this.activeRoute.snapshot.params['id'];
      if(id){
         this.orderService.getOrder(id).subscribe(model => {
           this.basket = model;
-          console.log(this.basket.id);
+          
         });
        };
   }

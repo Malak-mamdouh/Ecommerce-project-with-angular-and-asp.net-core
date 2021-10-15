@@ -83,9 +83,10 @@ min-height: 100vh; display: flex; align-items: center;justify-content: center;">
                 </div>
                 <div class="row">
                 
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-4">
                         <app-order-totals></app-order-totals>
-                        <a class="btn btn-outline-danger py-2 btn-block" (click)="onNavigate()">
+                        <a class="btn btn-outline-danger py-2 btn-block" 
+                        (click)="onNavigate()" style="min-width: 250px; max-width: auto;">
                             Checkout
                         </a>
                     </div>

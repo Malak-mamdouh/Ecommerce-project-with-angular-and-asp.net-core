@@ -4,6 +4,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -29,6 +33,11 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { AddOrderComponent } from './orders/addorder/addorder.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -61,7 +70,16 @@ import { OrderDetailsComponent } from './orders/order-details/order-details.comp
     HttpClientModule,
     FileUploadModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44371"],
+        disallowedRoutes: []
+      }
+    })
   ],
   exports: [],
   providers: [DashboardGaurdService , CanDeactivateGuard],

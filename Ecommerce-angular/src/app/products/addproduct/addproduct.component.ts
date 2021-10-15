@@ -27,7 +27,6 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
   category: Category;
   categories: Category[];
   isEditMode: boolean;
-  urlEdit: string;
   isUpdated: boolean;
   messageValidate = {
     name: {
@@ -85,7 +84,7 @@ export class AddproductComponent implements OnInit , CanComponentDeactivate{
           this.isEditMode = true;
          /* const file = this.createImgPath(this.product.url);
           console.log(this.product);*/
-          this.urlEdit = this.product.url;
+          
           this.title = 'Edit Product Data';
           this.btnTitle = 'Edit';
           this.Editurl = this.product.url;

@@ -4,6 +4,7 @@ import { LoginModel } from '../../models/login-model';
 import { RegisterService } from '../../services/register.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { AuthModel } from '../../models/authModel';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   message: string;
   loginForm: FormGroup;
   logModel: LoginModel;
+  authModel: AuthModel;
   messageValidate = {
     email: {
       required: 'Email is required'
@@ -40,6 +42,10 @@ export class LoginComponent implements OnInit {
       password: '',
       rememberMe: false
     };
+    this.authModel = {
+      roleName: '',
+      token: ''
+    };
   }
 
   Login(){
@@ -47,8 +53,8 @@ export class LoginComponent implements OnInit {
     this.regService.UserLogin(this.logModel).subscribe(succ => {
       const rem = !!this.loginForm.value.rememberMe;
       const email = this.loginForm.value.email;
-      const role = succ;
-      this.auth.installStorage(rem , email , role);
+      this.authModel = succ;
+      this.auth.installStorage(rem , email , this.authModel.roleName , this.authModel.token);
       this.route.navigate(['home']).then(x => {window.location.reload(); });
     } , err => {console.log(err);
                 this.message = err.error; }

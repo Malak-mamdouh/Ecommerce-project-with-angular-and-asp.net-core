@@ -9,3 +9,18 @@ th{
 .trBody:hover{
     color: white;
 }
+.Background {
+    background-color: #e6d6e6;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+.btn-shop{
+    font: italic;
+    color: #512DA8;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterModel } from '../models/register-model';
 import { LoginModel } from '../models/login-model';
 import { Observable } from 'rxjs';
+import { AuthModel } from '../models/authModel';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,12 @@ export class RegisterService {
     headers: new HttpHeaders({
       'content-type': 'application/json'
     }),
-    withCredentials: true,
   };
   Register(reg: RegisterModel){
-    return this.http.post( this.baseUrl + 'Register' , reg , this.headers).pipe();
+    return this.http.post( this.baseUrl + 'Register' , reg , this.headers);
   }
-  UserLogin(log: LoginModel){
-    return this.http.post(this.baseUrl + 'Login' , log , {responseType: 'text' ,
-    withCredentials: true });
+  UserLogin(log: LoginModel): Observable<AuthModel>{
+    return this.http.post<AuthModel>(this.baseUrl + 'Login' , log);
     /*headers*/
   }
   UserNameExist(name: string){

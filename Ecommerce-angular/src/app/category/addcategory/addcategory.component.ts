@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../models/Category';
 import { CategoryService } from '../../services/category.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addcategory',
@@ -13,7 +14,8 @@ export class AddcategoryComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private service: CategoryService,
-              private activeRoute: ActivatedRoute) { }
+              private activeRoute: ActivatedRoute , 
+              private toastr: ToastrService) { }
 
   message: string;
   categoryForm: FormGroup;
@@ -21,15 +23,18 @@ export class AddcategoryComponent implements OnInit {
   btntitle: string;
   title: string;
   id: number;
+  categoryName: boolean;
   isEditMode: boolean;
   messageValidate = {
     name: {
-      required: 'name is required'
+      required: 'name is required',
+      exist: ''
     }
   };
   ngOnInit(): void {
     this.message = '';
     this.isEditMode = false;
+    this.categoryName = true;
     this.id = 0;
     this.categoryM = {
       id: 0,
@@ -62,6 +67,20 @@ export class AddcategoryComponent implements OnInit {
         num_of_products: this.categoryM.num_of_products
       });
     }
+  }
+  IsCategoryNameExist(){
+    const name = this.categoryForm.value.categoryName;
+    if (name != null && name !== ''){
+      this.service.IsCategoryExists(name).subscribe(suc => {
+        this.messageValidate.name.exist = 'This Category is already added';
+        
+        this.categoryName = true;
+      }, err => {this.messageValidate.name.exist = '';
+                this.categoryName = false;
+              });
+      return true;
+    }
+    return false;
   }
   ValidateModel(){
     this.categoryM.categoryName = this.categoryForm.value.categoryName;

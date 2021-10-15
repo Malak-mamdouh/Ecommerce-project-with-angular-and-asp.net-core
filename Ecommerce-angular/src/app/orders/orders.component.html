@@ -1,8 +1,11 @@
-<div *ngIf="orders == null">
-  <p class="text-danger">No Orders Here...</p>
+<div class="container mt-5" *ngIf="orders">
+<div *ngIf="orders.length == 0" class="Background">
+  <p class="text-danger font-italic">No Orders Here...</p>
+    <button class="text-uppercase btn-shop" routerLink="/products">Continue Shopping</button>
+
 </div>
-<div class="container mt-5">
-  <div *ngIf="orders !== null">
+  <ng-container *ngIf="orders.length !== 0">
+  <div>
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -36,4 +39,5 @@
         </table>
     </div>
   </div>
+</ng-container>
 </div>

@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   categoryList: Category[];
   searchTerm: string;
   SelectedId = 0;
-
+  isLoading = true;
 
   ngOnInit(): void {
     this.searchTerm = '';
@@ -30,11 +30,13 @@ export class ProductsComponent implements OnInit {
   GetProducts(){
     this.service.Index(this.SelectedId , this.searchTerm).subscribe(list => {
       this.products = list;
+      this.isLoading = false;
     }, err => console.log(err));
   }
   GetCategories(){
     this.categoryS.Index().subscribe(list => {
       this.categoryList = [{id: 0, categoryName: 'All' , num_of_products: 5} , ...list];
+      this.isLoading = false;
     } , err => console.log(err));
   }
   OnFilter(id: number){

@@ -17,7 +17,6 @@ export class OrderService{
         headers: new HttpHeaders({
             'content-type': 'application/json'
         }),
-        withCredentials: true,
     };
 
     AllOrders(email: string): Observable<Order[]>{

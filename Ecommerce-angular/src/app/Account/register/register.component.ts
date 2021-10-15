@@ -3,6 +3,7 @@ import { FormBuilder , FormControl, FormGroup, Validators } from '@angular/forms
 import { RegisterModel } from '../../models/register-model';
 import { RegisterService } from '../../services/register.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,8 @@ import { Observable } from 'rxjs';
 export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
-              private regService: RegisterService) { }
+              private regService: RegisterService , 
+              private router: Router) { }
 
   reg: RegisterModel;
   userForm: FormGroup;
@@ -38,7 +40,7 @@ export class RegisterComponent implements OnInit {
     passConfirm: {
       required: 'Password is required',
       minLength: 'Password should be at least 8 Characters',
-      NotMatch: 'Not Match'
+      NotMatch: 'Password is not Matching'
     }
   };
   ngOnInit(): void {
@@ -69,7 +71,7 @@ export class RegisterComponent implements OnInit {
   register(){
     this.validateRegisterModel();
     this.regService.Register(this.reg).subscribe(success => {
-      this.message = 'you have registered successfuly';
+      this.router.navigate(['login']);
     } , err => console.log(err));
     this.userForm.reset();
     this.userForm.value.password = '';

@@ -17,8 +17,8 @@ export class CryptService {
     const encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(value.toString()) , key , {
       keySize: 128 / 8,
       iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      /*mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7*/
     });
     return encrypted.toString();
   }
@@ -29,8 +29,8 @@ export class CryptService {
     const decrypted = CryptoJS.AES.decrypt(value , key , {
       keySize: 128 / 8,
       iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7
+      /*mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7*/
     });
     return decrypted.toString(CryptoJS.enc.Utf8);
   }

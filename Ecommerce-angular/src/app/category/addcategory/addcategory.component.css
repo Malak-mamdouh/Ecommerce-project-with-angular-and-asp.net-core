@@ -1,3 +1,9 @@
 .add-category{
     padding: 30px;
 }
+.formBackground {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 30px;
+    margin-bottom: 30px;
+}

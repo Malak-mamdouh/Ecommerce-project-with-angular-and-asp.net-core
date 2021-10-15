@@ -6,8 +6,12 @@
     </button>
     {{message}}
   </div>
-  <div class="col-md-5 m-auto">
+  <h4 class="mb-5">Add Product</h4>
+  <div class="col-md-8">
       <form [formGroup]="productForm" (ngSubmit)="add()">
+        <div class="formBackground">
+
+      
           <div class="form-group">
             <label for="productName">Name</label>
             <input type="text" formControlName="productName" class="form-control" 
@@ -40,9 +44,9 @@
             </div>
             <div class="form-group">
               <label for="amount">Amount</label>
-              <textarea type="number" formControlName="amount" class="form-control" 
+              <input type="number" formControlName="amount" class="form-control" 
               id="amount" [ngClass]="{'is-invalid' : 
-              !this.productForm.get('amount').valid && this.productForm.get('amount').touched}"></textarea>
+              !this.productForm.get('amount').valid && this.productForm.get('amount').touched}">
               <div class="text-danger" 
                 *ngIf="this.productForm.get('amount').invalid && this.productForm.get('amount').touched">
                         {{messageValidate.description.required}}
@@ -65,7 +69,10 @@
              <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
           </div>
           
-          <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary mt-2">{{btnTitle}}</button>
+          <button type="submit" [disabled]="!productForm.valid" 
+          class="btn btn-block mt-2" 
+          style="background-color: #7386D5; color: white;">{{btnTitle}}</button>
+        </div>
       </form>
   </div>
   

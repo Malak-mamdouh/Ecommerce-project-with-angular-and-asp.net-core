@@ -10,16 +10,17 @@ export class DashboardGaurdService implements CanActivate {
   constructor(private route: Router, private auth: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
-    const role = !!localStorage.getItem('Role');
+    const token = !!localStorage.getItem('token');
     const roleName = this.auth.role;
-    if (role){
+    if (token){
       if (roleName.toLowerCase() !== 'admin'){
         this.route.navigate(['notFound']).then(x => {window.location.reload(); });
       }
       return true;
     }else{
-      this.route.navigate(['notFound']).then(x => {window.location.reload(); });
+      this.route.navigate(['notFound']);
+      return false;
     }
-    return false;
+    
   }
 }

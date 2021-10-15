@@ -1,11 +1,15 @@
 <div class="container">
-   <div class="mt-4" >
-       <div *ngIf="product">
+    <div *ngIf="isLoading" class="row" style="justify-content: center; margin-top: 100px;">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+   <div class="mt-4" *ngIf="product && !isLoading">
+       <div>
            <h1 class="text-center">{{product.productName}}</h1>
         </div>
     <hr>
     </div>
 
+    
     <div class="row mt-5" *ngIf="product">
         <div class="col-md-4">
                 <img [src]="createImgPath(product.url)" class="mx-auto d-block img-fluid" 
@@ -18,15 +22,19 @@
             width="40%">
         </div>
         <div class="col-md-8">
-                    <p class="card-text bold">{{product.description}}</p>
-                    <h3 class="mt-4">{{product.price | currency}}</h3>           
-                <button class="btn btn-warning mr-2" *ngIf="isAdmin()" type="button" (click)="EditProductClick(product.productId)">EDIT</button>
+                    <p class="card-text bold" style="font-size: 18px; font-weight: 500;">{{product.description}}</p>
+                    <h3 class="mt-4" style="color: rgb(77, 77, 77);">{{product.price | currency}}</h3>           
+                <button class="btn btn-warning mr-2" *ngIf="isAdmin()" type="button" 
+                (click)="EditProductClick(product.productId)">EDIT</button>
                 <button class="btn" style="background-color: #9575CD; color: white;" 
                 *ngIf="isAdmin()" type="button" (click)="onDelete(product.productId)">  DELETE </button>     
                 <div class="btn-group">
                     <button type="button" *ngIf="!isAdmin()" (click)="addItemToCart()" 
                     class="btn btn-block text-uppercase bold btn-flat">Add To Cart</button>
                 </div>
+                <div class="text-danger" *ngIf="notAvailable">
+                    {{product.productName}} is not available now
+                  </div>
                 
         </div>
     </div>

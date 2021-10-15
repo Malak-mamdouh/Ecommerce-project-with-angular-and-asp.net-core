@@ -1,8 +1,9 @@
 
-     <div class="card shadow-sm">
+     <div class="card shadow-sm" [ngClass]="{'danger' : notAvailable}">
             <a [routerLink]="['/product' , prod.productId]" style="cursor: pointer;
             text-align: center;">
-              <img [src]="createImgPath(prod.url)" class="card-img-top mt-2" alt="profile picture"
+              <img [src]="createImgPath(prod.url)" #img class="card-img-top mt-2" 
+              alt="profile picture" onerror=""
               height="190">
             </a>
             <div class="card-body d-flex flex-column">
@@ -18,9 +19,7 @@
                   <i class="fa fa-star-o"></i>
               </div>
                 <span class="mb-4">{{prod.price | currency}}</span>
-                <div class="text-danger" *ngIf="notAvailable">
-                  Not Available Now
-                </div>
+                
               <div class="btn-group mb-2">
                 <button type="button" *ngIf="!IsAdmin()" (click)="addItemToCart()" 
                 class="btn btn-block text-uppercase bold btn-flat">BUY NOW</button>
@@ -29,6 +28,9 @@
                 class="btn btn-block text-uppercase bold btn-flat" 
                 >View</button>
                 </div>
+                <span class="text-danger" *ngIf="notAvailable">
+                  Not Available Now
+                </span>
             </div>
         </div>
  

@@ -10,6 +10,7 @@ export class AuthService {
   email: string;
   role: string;
   expire: string;
+  token: string;
   baseUrl = 'https://localhost:44371/Account/';
 
   constructor(private http: HttpClient,
@@ -20,11 +21,12 @@ export class AuthService {
         this.email = this.crypt.Decrypt(localStorage.getItem('Email'));
         this.expire = this.crypt.Decrypt(localStorage.getItem('Expire'));
         this.role =  this.crypt.Decrypt(localStorage.getItem('Role'));
+        this.token = localStorage.getItem('token');
       }
   }
 
 
-  installStorage(rem: boolean , Email: string , role: string){
+  installStorage(rem: boolean , Email: string , role: string , token: string){
     const day = new Date();
     if (rem){
       day.setDate(day.getDate() + 10);
@@ -32,9 +34,11 @@ export class AuthService {
     else{
       day.setMinutes(day.getMinutes() + 1);
     }
+    console.log(role);
     localStorage.setItem('Email' , this.crypt.Encrypt(Email));
     localStorage.setItem('Expire' , this.crypt.Encrypt(day.toString()));
     localStorage.setItem('Role' , this.crypt.Encrypt(role));
+    localStorage.setItem('token' , token);
     /*this.GetRoleName(Email).subscribe(succ => {
       localStorage.setItem('Role' , succ);
       } , err => console.log(err));*/
@@ -53,15 +57,13 @@ export class AuthService {
     const email = !!localStorage.getItem('Email');
     const role = !!localStorage.getItem('Role');
     const expire = !!localStorage.getItem('Expire');
-    if (email && role && expire){
+    const token = !!localStorage.getItem('token');
+    if (email && role && expire && token){
       return true;
     }else{
       return false;
     }
   }
-  /*GetRoleName(email: string){
-   return this.http.get( this.baseUrl + 'GetRoleName/' + email ,  {responseType: 'text'});
-  }*/
   GetName(email: string){
     return this.http.get( this.baseUrl + 'GetName/' + email , {responseType: 'text'});
   }

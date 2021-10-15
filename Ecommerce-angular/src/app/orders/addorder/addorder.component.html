@@ -81,7 +81,7 @@
                 </div>
               </div>
               
-            <button type="submit" [disabled]="!orderForm.valid || emailExist" 
+            <button type="submit" [disabled]="!orderForm.valid || !EmailNotExist()" 
             class="btn btn-warning btn-block mt-4">CONFIRM ORDER</button>
         </form>
     </div>

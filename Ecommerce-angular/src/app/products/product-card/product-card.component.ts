@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Product } from '../../models/Product';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 import { BasketService } from '../../basket/basket.service';
 import { AdminService } from '../../services/Admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-card',
@@ -16,10 +17,12 @@ export class ProductCardComponent implements OnInit {
   products: Product[];
   single: Product;
   notAvailable: boolean;
+  
   constructor(private service: ProductService,
               private route: Router,
               private basketS: BasketService ,
-              private admin: AdminService) { }
+              private admin: AdminService , 
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.notAvailable = false;
@@ -33,10 +36,12 @@ export class ProductCardComponent implements OnInit {
     if(this.prod.amount > 0){
       this.basketS.addItemToBasket(this.prod);
     }else{
-      this.notAvailable = true;
+      this.toastr.error('This Product is not available now' , 'Not Available' , {
+        timeOut: 2000
+      });
     }
   }
-
+  
   public createImgPath = (serverpath: string) => {
     return `https://localhost:44371/${serverpath}`;
   }
